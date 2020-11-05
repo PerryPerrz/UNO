@@ -1,4 +1,4 @@
-package cartes.tests;
+package tests;
 
 import cartes.FabriqueCartes;
 import cartes.Couleur;
