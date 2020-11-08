@@ -2,7 +2,6 @@ package cartes;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import cartes.Carte;
 
 /**
  * Une class PaquetDeCartes
@@ -11,13 +10,13 @@ import cartes.Carte;
  */
 
 public class PaquetDeCartes {
-	ArrayList<Carte> paquet;
+	private ArrayList<Carte> paquet;
 
 	/**
 	 * Constructeur d'un paquet de carte
 	 */
 	public PaquetDeCartes() {
-		this.paquet = new ArrayList<>(32); // On initialise un paquet à 32 cartes
+		this.paquet = new ArrayList<>(108); // On initialise un paquet à 108 cartes (un jeu complet de Uno)
 	}
 
 	/**
@@ -26,9 +25,7 @@ public class PaquetDeCartes {
 	 * @param cartes la/les cartes à ajouter
 	 */
 	public void ajouter(Carte... cartes) { // ... = Soit on en prend une soit on en prend plusieurs (cartes de type Carte)
-		for (Carte i : cartes) {
-			this.paquet.add(i);
-		}
+		Collections.addAll(this.paquet, cartes);
 	}
 
 	/**
@@ -38,7 +35,7 @@ public class PaquetDeCartes {
 	 */
 	public int getNombreDeCartes() {
 		int nb = 0;
-		for (Carte i : this.paquet) {
+		for (Carte ignored : this.paquet) {
 			nb += 1;
 		}
 		return nb;
@@ -81,9 +78,9 @@ public class PaquetDeCartes {
 	 * @param pdc le paquet de cartes à ajouter
 	 */
 	public void ajouter(PaquetDeCartes pdc) { // On ajoute des paquets de cartes
-		for (Carte i : pdc.paquet) { // paquet est une "enveloppe" qui contient pdc.
-			this.paquet.add(i); // On ajoute les cartes du second paquet (pdc) dans le premier (this.paquet)
-		}
+		// paquet est une "enveloppe" qui contient pdc.
+		// On ajoute les cartes du second paquet (pdc) dans le premier (this.paquet)
+		this.paquet.addAll(pdc.paquet);
 	}
 
 	/**
