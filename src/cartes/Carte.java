@@ -11,7 +11,7 @@ public abstract class Carte {
 
     public Carte(Uno uno) { //Carte sans couleur
         this.setUno(uno);
-        //this.setCouleur();
+        this.setCouleur(null);
     }
 
     public Carte(Uno uno,Couleur couleur){  //Carte avec couleur
@@ -26,8 +26,7 @@ public abstract class Carte {
     abstract int effet();
 
     public boolean estSansCouleur(){
-        //return this.getCouleur().equals(Couleur.NOCOLOR); //Je créer une nouvelle couleur "Sans couleur" pour la comparer au this.carte
-        return this.getCouleur() == null;
+        return this.getCouleur().equals(null);
     }
 
     public void appliquerEffet(){

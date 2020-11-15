@@ -7,14 +7,14 @@ package cartes;
  */
 
 public enum Couleur {
-	ROUGE("Rouge"), VERT("Vert"), BLEU("Bleu"), JAUNE("Jaune"), NOCOLOR("NoColor");
+	ROUGE("Rouge"), VERT("Vert"), BLEU("Bleu"), JAUNE("Jaune");
 
 	private String nom;
 
 	private Couleur(String nomColor) {
 		boolean b;
 		b = (nomColor.equals("Rouge") || nomColor.equals("Vert") || nomColor.equals("Bleu")
-				|| nomColor.equals("Jaune") || nomColor.equals("NoColor")); // Quand on veut comparer 2 chaines de caractères on utilise "equals" et non "=="
+				|| nomColor.equals("Jaune")); // Quand on veut comparer 2 chaines de caractères on utilise "equals" et non "=="
 		assert (b) : "Le champ nom est faux";
 		this.nom = nomColor;
 	}

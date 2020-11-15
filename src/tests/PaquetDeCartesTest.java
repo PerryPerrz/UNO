@@ -104,4 +104,78 @@ class PaquetDeCartesTest {
     void piocher() {
         //assertEquals(pdc2.piocher(),new CarteChiffre(uno, Couleur.VERT,6));
     }
+
+    @Test
+    void ecrire(){
+        //Test avec un paquet vide
+        try {
+            pdc.ecrire("TestAvecUnPaquetVide");
+        } catch (ErreurFichier erreurFichier) {
+            erreurFichier.printStackTrace();
+        }
+
+        //Test avec un paquet de une carte
+        try {
+            pdc2.ecrire("TestAvecUnPaquet1Carte");
+        } catch (ErreurFichier erreurFichier) {
+            erreurFichier.printStackTrace();
+        }
+
+        //Test avec un paquet de 5 cartes
+        try {
+            pdc4.ecrire("TestAvecUnPaquet5Cartes");
+        } catch (ErreurFichier erreurFichier) {
+            erreurFichier.printStackTrace();
+        }
+
+        //Test avec un paquet de Uno
+        try {
+            pdc5.ecrire("TestAvecUnPaquetDeUno");
+        } catch (ErreurFichier erreurFichier) {
+            erreurFichier.printStackTrace();
+        }
+    }
+
+    @Test
+    void lire(){
+        //Test avec un paquet vide
+        try {
+            pdc.lire("TestAvecUnPaquetVide");
+        } catch (ErreurFichier erreurFichier) {
+            erreurFichier.printStackTrace();
+        }
+        assertEquals(pdc.getNombreDeCartes(),0);
+        assertTrue(pdc.estVide());
+        assertEquals(pdc.getValeur(),0);
+
+        //Test avec un paquet de une carte
+        try {
+            pdc2.lire("TestAvecUnPaquet1CArte");
+        } catch (ErreurFichier erreurFichier) {
+            erreurFichier.printStackTrace();
+        }
+        assertEquals(pdc2.getNombreDeCartes(),1);
+        assertFalse(pdc2.estVide());
+        assertEquals(pdc2.getValeur(),6);
+
+        //Test avec un paquet de 5 cartes
+        try {
+            pdc4.lire("TestAvecUnPaquet5Cartes");
+        } catch (ErreurFichier erreurFichier) {
+            erreurFichier.printStackTrace();
+        }
+        assertEquals(pdc4.getNombreDeCartes(),5);
+        assertFalse(pdc4.estVide());
+        assertEquals(pdc4.getValeur(),15);
+
+        //Test avec un paquet de Uno
+        try {
+            pdc5.lire("TestAvecUnPaquetDeUno");
+        } catch (ErreurFichier erreurFichier) {
+            erreurFichier.printStackTrace();
+        }
+        assertEquals(pdc5.getNombreDeCartes(),108);
+        assertFalse(pdc5.estVide());
+        assertEquals(pdc5.getValeur(),1240);
+    }
 }
