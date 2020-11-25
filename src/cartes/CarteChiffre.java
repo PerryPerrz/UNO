@@ -4,7 +4,7 @@ public class CarteChiffre extends Carte {
 
     private int chiffre;
 
-    public CarteChiffre(Uno uno,int valeur) {
+    public CarteChiffre(Uno uno, int valeur) {
         super(uno);
         this.setChiffre(valeur);
     }
