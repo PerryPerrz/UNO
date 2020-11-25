@@ -157,7 +157,7 @@ class PaquetDeCartesTest {
         assertEquals(pdc2.getNombreDeCartes(),1);
         assertFalse(pdc2.estVide());
         assertEquals(pdc2.getValeur(),6);
-        
+
         //Test avec un paquet de 5 cartes
         try {
             pdc4.lire("TestAvecUnPaquet5Cartes");
