@@ -2,6 +2,7 @@ package cartes;
 
 public class Uno {
     public Uno(){
+
     }
 
     public void Joker(){
