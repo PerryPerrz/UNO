@@ -1,8 +1,20 @@
 package cartes;
 
 public class Uno {
+
+    private Joueur[] players;
+    private PaquetDeCartes pdc;
+
     public Uno(){
 
+    }
+
+    public void creerLesJoueurs(int nbJoueur){
+        players = new Joueur[nbJoueur];
+        players[0] = new JoueurHumain(this, "Humain", 0);
+        for(int i = 1 ; i < nbJoueur ; ++i){
+            players[i] = new Bot(this,"Bot",i,1);
+        }
     }
 
     public void Joker(){
@@ -23,5 +35,9 @@ public class Uno {
 
     public void PasseTonTour(){
 
+    }
+
+    public Joueur[] getPlayers() {
+        return players;
     }
 }

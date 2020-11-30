@@ -7,7 +7,7 @@ public class CarteJoker extends Carte{
     }
 
     public CarteJoker(Uno uno, Couleur couleur) {
-        super(uno, couleur); 
+        super(uno, couleur);
     }
 
     public boolean peutEtreRecouverte(Carte c) {
