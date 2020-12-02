@@ -1,4 +1,6 @@
-package cartes;
+package uno.cartes;
+
+import uno.Uno;
 
 public class CarteJoker extends Carte{
 

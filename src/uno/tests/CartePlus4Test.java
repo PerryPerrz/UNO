@@ -1,6 +1,7 @@
-package tests;
+package uno.tests;
 
-import cartes.*;
+import uno.Uno;
+import uno.cartes.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

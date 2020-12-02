@@ -1,4 +1,6 @@
-package cartes;
+package uno.cartes;
+
+import uno.Uno;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -20,23 +22,23 @@ public class PaquetDeCartes implements Iterator<Carte> {
 	 * Constructeur d'un paquet de carte
 	 */
 	public PaquetDeCartes() {
-		this.paquet = new ArrayList<>(108); // On initialise un paquet à 108 cartes (un jeu complet de Uno)
+		this.paquet = new ArrayList<>(108); // On initialise un paquet à 108 uno.cartes (un jeu complet de uno.Uno)
 		indexCarte = 0;
 	}
 
 	/**
-	 * Ajoute une carte à un paquet de cartes
+	 * Ajoute une carte à un paquet de uno.cartes
 	 *
-	 * @param cartes la/les cartes à ajouter
+	 * @param cartes la/les uno.cartes à ajouter
 	 */
-	public void ajouter(Carte... cartes) { // ... = Soit on en prend une soit on en prend plusieurs (cartes de type Carte)
+	public void ajouter(Carte... cartes) { // ... = Soit on en prend une soit on en prend plusieurs (uno.cartes de type Carte)
 		Collections.addAll(this.getPaquet(), cartes);
 	}
 
 	/**
-	 * Retourne le nombre de carte d'un paquet de cartes
+	 * Retourne le nombre de carte d'un paquet de uno.cartes
 	 *
-	 * @return un entier qui correspond au nombre de carte d'un paquet de cartes
+	 * @return un entier qui correspond au nombre de carte d'un paquet de uno.cartes
 	 */
 	public int getNombreDeCartes() {
 		int nb = 0;
@@ -56,9 +58,9 @@ public class PaquetDeCartes implements Iterator<Carte> {
 	}
 
 	/**
-	 * Retourne la somme de toutes les cartes d'un paquet
+	 * Retourne la somme de toutes les uno.cartes d'un paquet
 	 *
-	 * @return Retourne un entier qui correspond à la somme de toutes les cartes
+	 * @return Retourne un entier qui correspond à la somme de toutes les uno.cartes
 	 * d'un paquet
 	 */
 	public int getValeur() {
@@ -70,7 +72,7 @@ public class PaquetDeCartes implements Iterator<Carte> {
 	}
 
 	public String toString() {
-		StringBuilder str = new StringBuilder(this.getNombreDeCartes() * 30); // 29 caractères dans le toString de cartes + l'espace rajouté (dans mes tests pour des raisons de propretés)
+		StringBuilder str = new StringBuilder(this.getNombreDeCartes() * 30); // 29 caractères dans le toString de uno.cartes + l'espace rajouté (dans mes uno.tests pour des raisons de propretés)
 		for (Carte i : this.getPaquet()) {
 			str.append(i.toString()).append(" "); // On rajoute i.toString et l'espace à la suite str.
 		}
@@ -78,13 +80,13 @@ public class PaquetDeCartes implements Iterator<Carte> {
 	}
 
 	/**
-	 * Ajoute un paquet de cartes à un paquet de cartes
+	 * Ajoute un paquet de uno.cartes à un paquet de uno.cartes
 	 *
-	 * @param pdc le paquet de cartes à ajouter
+	 * @param pdc le paquet de uno.cartes à ajouter
 	 */
-	public void ajouter(PaquetDeCartes pdc) { // On ajoute des paquets de cartes
+	public void ajouter(PaquetDeCartes pdc) { // On ajoute des paquets de uno.cartes
 		// paquet est une "enveloppe" qui contient pdc.
-		// On ajoute les cartes du second paquet (pdc) dans le premier (this.paquet)
+		// On ajoute les uno.cartes du second paquet (pdc) dans le premier (this.paquet)
 		this.getPaquet().addAll(pdc.paquet);
 	}
 
@@ -130,9 +132,9 @@ public class PaquetDeCartes implements Iterator<Carte> {
 	}
 
 	/**
-	 * Ecrire toutes les cartes du paquet dans le fichier dont le nom est passé en paramètre
+	 * Ecrire toutes les uno.cartes du paquet dans le fichier dont le nom est passé en paramètre
 	 *
-	 * @param nomDeFichier fichier qui contiendra toutes les cartes du paquet
+	 * @param nomDeFichier fichier qui contiendra toutes les uno.cartes du paquet
 	 */
 	public void ecrire(String nomDeFichier) throws ErreurFichier { //Peut importe ce qu'il se passe dans cette fonction, si il trouve "ErreurFichier", il renvoit cette erreur.
 		BufferedWriter flotFiltre;
@@ -143,13 +145,13 @@ public class PaquetDeCartes implements Iterator<Carte> {
 			try {
 				flot = new FileWriter(nomDeFichier);
 				flotFiltre = new BufferedWriter(flot);
-				for (int i = 0; i < this.getNombreDeCartes(); ++i) { //On parcourt toutes les cartes du jeu de uno
+				for (int i = 0; i < this.getNombreDeCartes(); ++i) { //On parcourt toutes les uno.cartes du jeu de uno
 					switch (this.getPaquet().get(i).effet()) { //On regarde l'effet de la carte d'indice i située dans le paquet
 						case 0:
 							flotFiltre.write(this.getPaquet().get(i).getValeur() + "" + " " + this.getPaquet().get(i).getCouleur().toString()); //On convertit le int en string
 							break;
 						case 1:
-							flotFiltre.write("Joker NoColor"); //On affiche le nom des cartes "bonus"
+							flotFiltre.write("Joker NoColor"); //On affiche le nom des uno.cartes "bonus"
 							break;
 						case 2:
 							flotFiltre.write("Plus2" + " " + this.getPaquet().get(i).getCouleur().toString());
@@ -176,9 +178,9 @@ public class PaquetDeCartes implements Iterator<Carte> {
 	}
 
 	/**
-	 * Initialiser un paquet de cartes avec toutes les cartes décrites dans le fichier dont le nom est passé en paramètre
+	 * Initialiser un paquet de uno.cartes avec toutes les uno.cartes décrites dans le fichier dont le nom est passé en paramètre
 	 *
-	 * @param nomDeFichier fichier qui contient toutes les cartes du paquet
+	 * @param nomDeFichier fichier qui contient toutes les uno.cartes du paquet
 	 */
 	public void lire(String nomDeFichier) throws ErreurFichier {
 		BufferedReader flot = null;

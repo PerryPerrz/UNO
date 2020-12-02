@@ -1,12 +1,19 @@
-package cartes;
+package uno.cartes;
 
-public class CarteChangementDeSens extends Carte {
+import uno.Uno;
 
-    public CarteChangementDeSens(Uno uno) {
+public class CarteChiffre extends Carte {
+
+    private int chiffre;
+
+    public CarteChiffre(Uno uno, int valeur) {
         super(uno);
+        this.setChiffre(valeur);
     }
-    public CarteChangementDeSens(Uno uno, Couleur couleur) {
+
+    public CarteChiffre(Uno uno, Couleur couleur, int valeur) {
         super(uno, couleur);
+        this.setChiffre(valeur);
     }
 
     public boolean peutEtreRecouverte(Carte c) {
@@ -14,19 +21,19 @@ public class CarteChangementDeSens extends Carte {
     }
 
     public int getValeur() {
-        return 20;  //Ajoute 20 pts si on a encore cette carte dans la main à la fin du jeu
+        return this.chiffre;    //Ajoute le nombre de points qui est égal à la valeur de la carte.
     }
 
     public int effet() {
-        return 3;   //3 correspond à l'effet ChangementDeSens
+        return 0;   //0 correspond à une carte "sans effet"
     }
 
     public boolean peutEtrePoseeSur(CarteChiffre c) {
-        return this.estDeCouleurCompatible(c.getCouleur());
+        return this.getCouleur() == c.getCouleur() || this.getValeur() == c.getValeur();
     }
 
     public boolean peutEtrePoseeSur(CarteChangementDeSens c) {
-        return true;
+        return this.estDeCouleurCompatible(c.getCouleur());
     }
 
     public boolean peutEtrePoseeSur(CarteJoker c) {
@@ -43,5 +50,9 @@ public class CarteChangementDeSens extends Carte {
 
     public boolean peutEtrePoseeSur(CartePlus4 c) {
         return this.estDeCouleurCompatible(c.getCouleur());
+    }
+
+    public void setChiffre(int valeur) {
+        this.chiffre = valeur;
     }
 }

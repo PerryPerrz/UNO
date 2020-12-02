@@ -1,12 +1,13 @@
-package cartes;
+package uno.cartes;
 
-public class CartePasseTonTour extends Carte{
+import uno.Uno;
 
-    public CartePasseTonTour(Uno uno) {
+public class CarteChangementDeSens extends Carte {
+
+    public CarteChangementDeSens(Uno uno) {
         super(uno);
     }
-
-    public CartePasseTonTour(Uno uno, Couleur couleur) {
+    public CarteChangementDeSens(Uno uno, Couleur couleur) {
         super(uno, couleur);
     }
 
@@ -19,7 +20,7 @@ public class CartePasseTonTour extends Carte{
     }
 
     public int effet() {
-        return 5;   //5 correspond à l'effet PasseTonTour
+        return 3;   //3 correspond à l'effet ChangementDeSens
     }
 
     public boolean peutEtrePoseeSur(CarteChiffre c) {
@@ -27,7 +28,7 @@ public class CartePasseTonTour extends Carte{
     }
 
     public boolean peutEtrePoseeSur(CarteChangementDeSens c) {
-        return this.estDeCouleurCompatible(c.getCouleur());
+        return true;
     }
 
     public boolean peutEtrePoseeSur(CarteJoker c) {
@@ -35,7 +36,7 @@ public class CartePasseTonTour extends Carte{
     }
 
     public boolean peutEtrePoseeSur(CartePasseTonTour c) {
-        return true;
+        return this.estDeCouleurCompatible(c.getCouleur());
     }
 
     public boolean peutEtrePoseeSur(CartePlus2 c) {

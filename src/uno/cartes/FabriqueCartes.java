@@ -1,4 +1,6 @@
-package cartes;
+package uno.cartes;
+
+import uno.Uno;
 
 /**
  * Un singleton FabriqueCartes
@@ -55,25 +57,25 @@ public class FabriqueCartes {
 		for(int k = 1; k <= 4; ++k) {
 			if(k == 1) {
 				for (int i = 1; i <= 9; ++i) { // Une boucle pour pour chaque couleur
-					paq.ajouter(new CarteChiffre(uno, Couleur.ROUGE, i)); // On ajoute 8 cartes rouges au paquet
-					paq.ajouter(new CarteChiffre(uno, Couleur.ROUGE, i)); //Les cartes de 1 à 9 sont doublés dans un jeu de Uno
+					paq.ajouter(new CarteChiffre(uno, Couleur.ROUGE, i)); // On ajoute 8 uno.cartes rouges au paquet
+					paq.ajouter(new CarteChiffre(uno, Couleur.ROUGE, i)); //Les uno.cartes de 1 à 9 sont doublés dans un jeu de uno.Uno
 				}
 			}
 			if(k == 2) {
 				for (int i = 1; i <= 9; ++i) {
-					paq.ajouter(new CarteChiffre(uno, Couleur.VERT, i));// On ajoute 8 cartes vertes au paquet
+					paq.ajouter(new CarteChiffre(uno, Couleur.VERT, i));// On ajoute 8 uno.cartes vertes au paquet
 					paq.ajouter(new CarteChiffre(uno, Couleur.VERT, i));
 				}
 			}
 			if(k == 3) {
 				for (int i = 1; i <= 9; ++i) {
-					paq.ajouter(new CarteChiffre(uno, Couleur.BLEU, i));// On ajoute 8 cartes bleues au paquet
+					paq.ajouter(new CarteChiffre(uno, Couleur.BLEU, i));// On ajoute 8 uno.cartes bleues au paquet
 					paq.ajouter(new CarteChiffre(uno, Couleur.BLEU, i));
 				}
 			}
 			if(k == 4) {
 				for (int i = 1; i <= 9; ++i) {
-					paq.ajouter(new CarteChiffre(uno, Couleur.JAUNE, i));// On ajoute 8 cartes jaunes au paquet
+					paq.ajouter(new CarteChiffre(uno, Couleur.JAUNE, i));// On ajoute 8 uno.cartes jaunes au paquet
 					paq.ajouter(new CarteChiffre(uno, Couleur.JAUNE, i));
 				}
 			}

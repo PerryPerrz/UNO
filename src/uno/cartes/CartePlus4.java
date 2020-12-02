@@ -1,4 +1,6 @@
-package cartes;
+package uno.cartes;
+
+import uno.Uno;
 
 public class CartePlus4 extends Carte{
 

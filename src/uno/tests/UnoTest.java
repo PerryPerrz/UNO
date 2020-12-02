@@ -1,10 +1,8 @@
-package tests;
+package uno.tests;
 
-import cartes.Uno;
+import uno.Uno;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class UnoTest {
     Uno uno;

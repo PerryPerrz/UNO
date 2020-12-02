@@ -1,4 +1,6 @@
-package cartes;
+package uno.joueur;
+
+import uno.Uno;
 
 public class Bot extends Joueur {
 

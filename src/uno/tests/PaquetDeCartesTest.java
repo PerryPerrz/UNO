@@ -1,6 +1,7 @@
-package tests;
+package uno.tests;
 
-import cartes.*;
+import uno.Uno;
+import uno.cartes.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -121,14 +122,14 @@ class PaquetDeCartesTest {
             erreurFichier.printStackTrace();
         }
 
-        //Test avec un paquet de 5 cartes
+        //Test avec un paquet de 5 uno.cartes
         try {
             pdc4.ecrire("TestAvecUnPaquet5Cartes");
         } catch (ErreurFichier erreurFichier) {
             erreurFichier.printStackTrace();
         }
 
-        //Test avec un paquet de Uno
+        //Test avec un paquet de uno.Uno
         try {
             pdc5.ecrire("TestAvecUnPaquetDeUno");
         } catch (ErreurFichier erreurFichier) {
@@ -158,7 +159,7 @@ class PaquetDeCartesTest {
         assertFalse(pdc2.estVide());
         assertEquals(pdc2.getValeur(),6);
 
-        //Test avec un paquet de 5 cartes
+        //Test avec un paquet de 5 uno.cartes
         try {
             pdc4.lire("TestAvecUnPaquet5Cartes");
         } catch (ErreurFichier erreurFichier) {
@@ -168,7 +169,7 @@ class PaquetDeCartesTest {
         assertFalse(pdc4.estVide());
         assertEquals(pdc4.getValeur(),15);
 
-        //Test avec un paquet de Uno
+        //Test avec un paquet de uno.Uno
         try {
             pdc5.lire("TestAvecUnPaquetDeUno");
         } catch (ErreurFichier erreurFichier) {

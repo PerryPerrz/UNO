@@ -1,6 +1,8 @@
-package cartes;
+package uno.joueur;
 
-public class JoueurHumain extends Joueur{
+import uno.Uno;
+
+public class JoueurHumain extends Joueur {
 
     public JoueurHumain(Uno uno, String nom, int no){
         super(uno,nom,no);
