@@ -4,6 +4,7 @@ import uno.Uno;
 import uno.cartes.PaquetDeCartes;
 
 public abstract class Joueur {
+
     protected PaquetDeCartes pdc;
     protected Uno uno;
     protected String nom;
@@ -20,4 +21,8 @@ public abstract class Joueur {
         str.append("Joueur").append(this.uno).append(this.nom).append(this.numero);
         return str.toString();
     }
+    public PaquetDeCartes getPdc() {
+        return pdc;
+    }
+
 }
