@@ -1,5 +1,6 @@
-package cartes;
+package tests;
 
+import cartes.Uno;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
