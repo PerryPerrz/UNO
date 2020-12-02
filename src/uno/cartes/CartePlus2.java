@@ -24,6 +24,12 @@ public class CartePlus2 extends Carte {
         return 2;   //2 correspond à l'effet Plus2
     }
 
+    @Override
+    public void appliquerEffet() {
+        this.uno.distribuerCarteSuivant(2);
+        this.uno.changerDeJoueur();
+    }
+
     public boolean peutEtrePoseeSur(CarteChiffre c) {
         return this.estDeCouleurCompatible(c.getCouleur());
     }

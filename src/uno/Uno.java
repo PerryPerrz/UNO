@@ -11,6 +11,7 @@ import java.util.Random;
 public class Uno {
 
     private Joueur[] players;
+
     private PaquetDeCartes pioche;
     private PaquetDeCartes talon;
     private boolean sensHoraire;
@@ -30,10 +31,10 @@ public class Uno {
     }
 
     public void creerLesJoueurs(int nbJoueur){
-        players = new Joueur[nbJoueur];
-        players[0] = new JoueurHumain(this, "Humain", 0);
+        this.players = new Joueur[nbJoueur];
+        this.players[0] = new JoueurHumain(this, "Humain", 0);
         for(int i = 1 ; i < nbJoueur ; ++i){
-            players[i] = new Bot(this,"Bot",i,1);
+            this.players[i] = new Bot(this,"Bot",i,1);
         }
     }
 
@@ -42,7 +43,7 @@ public class Uno {
         this.pioche = FabriqueCartes.getPaquetUno();
         for(int i = 0 ; i < 7 ; ++ i){ //On donne 7 cartes par joueurs.
             for(int j = 0 ; j < this.nbJoueurs(); ++j){ //On parcours tous les joueurs.
-                this.getPlayers()[i].getPdc().ajouter(pioche.piocher());
+                this.getPlayers()[j].getPdc().ajouter(pioche.piocher());
             }
         }
         this.talon = FabriqueCartes.getPaquetVide(); //Au début, le talon est un paquet vide
@@ -51,36 +52,35 @@ public class Uno {
 
     public void choisirQuiDistribue(){
         Random random = new Random();
-        noJoueurDistrib = random.nextInt(nbJoueurs());
+        this.noJoueurDistrib = random.nextInt(nbJoueurs());
     }
 
     public void choisirQuiJoue(){
-        if(noJoueurDistrib == this.getPlayers().length){ //Si on est au dernier uno.joueur, on revient au premier
-            noJoueurPlay = 0;
+        if(noJoueurDistrib == this.nbJoueurs()){ //Si on est au dernier uno.joueur, on revient au premier
+           this.noJoueurPlay = 0;
         }
         else{
-            noJoueurPlay = noJoueurDistrib + 1; //Le uno.joueur qui joue est celui qui suit le uno.joueur qui distribue
+            this.noJoueurPlay = noJoueurDistrib + 1; //Le uno.joueur qui joue est celui qui suit le uno.joueur qui distribue
         }
     }
 
-    public void Joker(){
-
+    public void changerSensDuJeu(){
+        this.sensHoraire = !this.sensHoraire;
     }
 
-    public void Plus2(){
-
+    public void changerDeJoueur(){ //Le joueur actuel passe son tours
+        if(noJoueurDistrib == this.nbJoueurs()){ //Si on est au dernier uno.joueur, on revient au premier
+            this.noJoueurPlay = 0;
+        }
+        else{
+            this.noJoueurPlay = this.noJoueurPlay + 1;
+        }
     }
 
-    public void ChangementDeSens(){
-
-    }
-
-    public void Plus4(){
-
-    }
-
-    public void PasseTonTour(){
-
+    public void distribuerCarteSuivant(int nb){ //On distribue le nombre de cartes aux joueurs suivants
+        for(int i = 0 ; i < nb ; ++i){
+            this.getPlayers()[i].getPdc().ajouter(pioche.piocher());
+        }
     }
 
     public Joueur[] getPlayers() {
@@ -93,6 +93,14 @@ public class Uno {
 
     public int getNoJoueurPlay() {
         return noJoueurPlay;
+    }
+
+    public PaquetDeCartes getPioche() {
+        return pioche;
+    }
+
+    public PaquetDeCartes getTalon() {
+        return talon;
     }
 
     public int nbJoueurs(){

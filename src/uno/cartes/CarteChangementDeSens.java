@@ -23,6 +23,11 @@ public class CarteChangementDeSens extends Carte {
         return 3;   //3 correspond à l'effet ChangementDeSens
     }
 
+    @Override
+    public void appliquerEffet() {
+        this.uno.changerSensDuJeu();
+    }
+
     public boolean peutEtrePoseeSur(CarteChiffre c) {
         return this.estDeCouleurCompatible(c.getCouleur());
     }

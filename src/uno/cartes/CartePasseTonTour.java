@@ -24,6 +24,11 @@ public class CartePasseTonTour extends Carte{
         return 5;   //5 correspond à l'effet PasseTonTour
     }
 
+    @Override
+    public void appliquerEffet() {
+        this.uno.changerDeJoueur();
+    }
+
     public boolean peutEtrePoseeSur(CarteChiffre c) {
         return this.estDeCouleurCompatible(c.getCouleur());
     }

@@ -11,6 +11,7 @@ public abstract class Joueur {
     protected int numero;
 
     public Joueur(Uno uno, String nom, int no) {
+        this.pdc = new PaquetDeCartes();
         this.uno = uno;
         this.nom = nom;
         this.numero = no;
@@ -25,4 +26,7 @@ public abstract class Joueur {
         return pdc;
     }
 
+    public String getNom() {
+        return nom;
+    }
 }

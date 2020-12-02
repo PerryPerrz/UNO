@@ -24,6 +24,13 @@ public class CartePlus4 extends Carte{
         return 4;   //4 correspond à l'effet Plus4
     }
 
+    @Override
+    public void appliquerEffet() {
+        this.uno.distribuerCarteSuivant(4);
+        this.uno.changerDeJoueur();
+        //pas de fonction pour changer la carte d'une couleur.
+    }
+
     public boolean peutEtrePoseeSur(CarteChiffre c) {
         return true;
     }

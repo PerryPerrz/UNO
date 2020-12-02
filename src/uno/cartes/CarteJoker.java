@@ -24,6 +24,11 @@ public class CarteJoker extends Carte{
         return 1;   //1 correspond à l'effet Joker
     }
 
+    @Override
+    public void appliquerEffet() {
+        //Pas fait la fonction qui permet de changer la couleur d'une carte.
+    }
+
     public boolean peutEtrePoseeSur(CarteChiffre c) {
         return true;
     }

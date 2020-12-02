@@ -28,6 +28,11 @@ public class CarteChiffre extends Carte {
         return 0;   //0 correspond à une carte "sans effet"
     }
 
+    @Override
+    public void appliquerEffet() {
+        //Pas d'effets notables
+    }
+
     public boolean peutEtrePoseeSur(CarteChiffre c) {
         return this.getCouleur() == c.getCouleur() || this.getValeur() == c.getValeur();
     }
