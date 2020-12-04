@@ -32,6 +32,7 @@ class UnoTest {
         else{
             assertEquals(uno.getNoJoueurPlay(),uno.getNoJoueurDistrib() + 1);
         }
+        assertTrue(uno.isSensHoraire());
     }
 
     @Test
@@ -40,5 +41,23 @@ class UnoTest {
         assertEquals(uno.nbJoueurs(),9);
         uno.creerLesJoueurs(2);
         assertEquals(uno.nbJoueurs(),2);
+    }
+
+    @Test
+    void changerSensDuJeu(){
+        uno.initialiser(6);
+        assertTrue(uno.isSensHoraire());
+        uno.changerSensDuJeu();
+        assertFalse(uno.isSensHoraire());
+    }
+
+    @Test
+    void distribuerCarteSuivant(){
+
+    }
+
+    @Test
+    void changerDeJoueur(){
+
     }
 }

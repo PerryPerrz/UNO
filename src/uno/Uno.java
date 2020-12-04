@@ -28,6 +28,7 @@ public class Uno {
         distribuerCartes();
         choisirQuiDistribue();
         choisirQuiJoue();
+        sensHoraire = true;
     }
 
     public void creerLesJoueurs(int nbJoueur){
@@ -83,6 +84,10 @@ public class Uno {
         }
     }
 
+    public int nbJoueurs(){
+        return this.players.length;
+    }
+
     public Joueur[] getPlayers() {
         return players;
     }
@@ -103,7 +108,7 @@ public class Uno {
         return talon;
     }
 
-    public int nbJoueurs(){
-        return this.players.length;
+    public boolean isSensHoraire() {
+        return sensHoraire;
     }
 }
