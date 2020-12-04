@@ -11,7 +11,6 @@ import java.util.Random;
 public class Uno {
 
     private Joueur[] players;
-
     private PaquetDeCartes pioche;
     private PaquetDeCartes talon;
     private boolean sensHoraire;
@@ -70,17 +69,24 @@ public class Uno {
     }
 
     public void changerDeJoueur(){ //Le joueur actuel passe son tours
-        if(noJoueurDistrib == this.nbJoueurs()){ //Si on est au dernier uno.joueur, on revient au premier
+        if(this.getNoJoueurPlay() == this.nbJoueurs() - 1){ //Si on est au dernier uno.joueur, on revient au premier
             this.noJoueurPlay = 0;
         }
         else{
-            this.noJoueurPlay = this.noJoueurPlay + 1;
+            this.noJoueurPlay = this.getNoJoueurPlay() + 1;
         }
     }
 
     public void distribuerCarteSuivant(int nb){ //On distribue le nombre de cartes aux joueurs suivants
-        for(int i = 0 ; i < nb ; ++i){
-            this.getPlayers()[i].getPdc().ajouter(pioche.piocher());
+        if(this.getNoJoueurPlay() == this.nbJoueurs()){ //Je ne met pas le "if" dans la boucle for car je préfere que le programme effectue une seule fois la conditon if. (Je pense que c'est le mieux en terme d'optimisation)
+            for (int i = 0; i < nb; ++i) {
+                this.getPlayers()[0].getPdc().ajouter(pioche.piocher());
+            }
+        }
+        else {
+            for (int i = 0; i < nb; ++i) {
+                this.getPlayers()[this.getNoJoueurPlay() + 1].getPdc().ajouter(pioche.piocher()); //+ 1, on ajoute les cartes au joueur suivant
+            }
         }
     }
 

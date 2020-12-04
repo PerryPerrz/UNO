@@ -52,12 +52,49 @@ class UnoTest {
     }
 
     @Test
-    void distribuerCarteSuivant(){
-
+    void changerDeJoueur(){
+        uno.initialiser(6);
+        int indiceJoueur = uno.getNoJoueurPlay();
+        uno.changerDeJoueur();
+        if(indiceJoueur == uno.nbJoueurs() - 1){    //Si le joueur qui joue est le dernier, on repasse au premier
+            assertEquals(indiceJoueur,0);
+        }
+        else{
+            assertEquals(indiceJoueur,uno.getNoJoueurPlay() - 1);
+        }
     }
 
     @Test
-    void changerDeJoueur(){
+    void distribuerCarteSuivant(){
+        uno.initialiser(6);
+        if(uno.getNoJoueurPlay() == uno.nbJoueurs() - 1){
+            assertEquals(uno.getPlayers()[0].getPdc().getNombreDeCartes(),7);
+        }
+        else{
+            assertEquals(uno.getPlayers()[uno.getNoJoueurPlay() + 1].getPdc().getNombreDeCartes(),7);
+        }
+        assertEquals(uno.getPioche().getNombreDeCartes(),108 - 6 * 7 - 1); //- 1 pour la défausse
 
+        uno.distribuerCarteSuivant(1);
+
+        if(uno.getNoJoueurPlay() == uno.nbJoueurs() - 1){
+            assertEquals(uno.getPlayers()[0].getPdc().getNombreDeCartes(),8);
+        }
+        else{
+            assertEquals(uno.getPlayers()[uno.getNoJoueurPlay() + 1].getPdc().getNombreDeCartes(),8);
+
+        }
+        assertEquals(uno.getPioche().getNombreDeCartes(),108 - 6 * 7 - 1 - 1);
+
+        uno.distribuerCarteSuivant(0);
+
+        if(uno.getNoJoueurPlay() == uno.nbJoueurs() - 1){
+            assertEquals(uno.getPlayers()[0].getPdc().getNombreDeCartes(),8);
+        }
+        else{
+            assertEquals(uno.getPlayers()[uno.getNoJoueurPlay() + 1].getPdc().getNombreDeCartes(),8);
+
+        }
+        assertEquals(uno.getPioche().getNombreDeCartes(),108 - 6 * 7 - 1 - 1);
     }
 }
