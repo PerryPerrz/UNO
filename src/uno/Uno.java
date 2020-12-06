@@ -56,7 +56,7 @@ public class Uno {
     }
 
     public void choisirQuiJoue(){
-        if(noJoueurDistrib == this.nbJoueurs()){ //Si on est au dernier uno.joueur, on revient au premier
+        if(noJoueurDistrib == this.nbJoueurs() - 1){ //Si on est au dernier uno.joueur, on revient au premier
            this.noJoueurPlay = 0;
         }
         else{
@@ -78,7 +78,7 @@ public class Uno {
     }
 
     public void distribuerCarteSuivant(int nb){ //On distribue le nombre de cartes aux joueurs suivants
-        if(this.getNoJoueurPlay() == this.nbJoueurs()){ //Je ne met pas le "if" dans la boucle for car je préfere que le programme effectue une seule fois la conditon if. (Je pense que c'est le mieux en terme d'optimisation)
+        if(this.getNoJoueurPlay() == this.nbJoueurs() - 1){ //Je ne met pas le "if" dans la boucle for car je préfere que le programme effectue une seule fois la conditon if. (Je pense que c'est le mieux en terme d'optimisation)
             for (int i = 0; i < nb; ++i) {
                 this.getPlayers()[0].getPdc().ajouter(pioche.piocher());
             }

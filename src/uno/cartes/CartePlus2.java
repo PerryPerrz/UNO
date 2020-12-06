@@ -38,7 +38,7 @@ public class CartePlus2 extends Carte {
         return this.estDeCouleurCompatible(c.getCouleur());
     }
 
-    public  boolean peutEtrePoseeSur(CarteJoker c) {
+    public boolean peutEtrePoseeSur(CarteJoker c) {
         return this.estDeCouleurCompatible(c.getCouleur());
     }
 

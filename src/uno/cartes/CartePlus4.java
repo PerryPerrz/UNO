@@ -8,10 +8,6 @@ public class CartePlus4 extends Carte{
         super(uno);
     }
 
-    public CartePlus4(Uno uno, Couleur couleur) {
-        super(uno, couleur);
-    }
-
     public boolean peutEtreRecouverte(Carte c) {
         return c.peutEtrePoseeSur(this);
     }

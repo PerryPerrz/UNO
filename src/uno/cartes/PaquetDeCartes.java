@@ -113,7 +113,7 @@ public class PaquetDeCartes implements Iterator<Carte> {
 		if (this.estVide()) {
 			return null;
 		}
-		return this.getPaquet().get(0); // get(0) prend la carte à l'indice 0
+		return this.getPaquet().get(this.getNombreDeCartes() - 1); //On retourne la carte au sommet du paquet
 	}
 
 	/**
@@ -126,8 +126,8 @@ public class PaquetDeCartes implements Iterator<Carte> {
 			return null;
 		}
 		Carte c1;
-		c1 = this.getPaquet().get(0); // On stock la carte piochée
-		this.getPaquet().remove(0); // On enlève la carte piochée au paquet
+		c1 = this.getPaquet().get(this.getNombreDeCartes() - 1); // On stock la carte piochée
+		this.getPaquet().remove(this.getNombreDeCartes() - 1); // On enlève la carte piochée au paquet
 		return c1;
 	}
 
@@ -299,6 +299,14 @@ public class PaquetDeCartes implements Iterator<Carte> {
 	public Carte next() {
 		this.indexCarte ++;
 		return this.getPaquet().get(indexCarte - 1);
+	}
+	public Carte getCarteIndex(int i){
+		return this.getPaquet().get(i);
+	}
+
+	//Enlèvz une carte à un indice donné
+	public void removeCarteIndex(int i){
+		this.getPaquet().remove(i);
 	}
 
 	public ArrayList<Carte> getPaquet() {

@@ -17,6 +17,8 @@ public abstract class Joueur {
         this.numero = no;
     }
 
+    abstract void jouer(String coup);
+
     public String toString() {
         StringBuilder str = new StringBuilder();
         str.append("Joueur").append(this.uno).append(this.nom).append(this.numero);

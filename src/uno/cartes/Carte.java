@@ -21,14 +21,14 @@ public abstract class Carte {
         this.setCouleur(couleur);
     }
 
-    abstract boolean peutEtreRecouverte(Carte c);
+    public abstract boolean peutEtreRecouverte(Carte c);
 
-    abstract int getValeur();
+    public abstract int getValeur();
 
-    abstract int effet();
+    public abstract int effet();
 
     public boolean estSansCouleur(){
-        return this.getCouleur().equals(null);
+        return this.getCouleur() == null;
     }
 
     public abstract void appliquerEffet();
@@ -41,19 +41,19 @@ public abstract class Carte {
 
     public abstract boolean peutEtrePoseeSur(CarteChangementDeSens c);
 
-    abstract boolean peutEtrePoseeSur(CarteJoker c);
+    public abstract boolean peutEtrePoseeSur(CarteJoker c);
 
-    abstract boolean peutEtrePoseeSur(CartePasseTonTour c);
+    public abstract boolean peutEtrePoseeSur(CartePasseTonTour c);
 
-    abstract boolean peutEtrePoseeSur(CartePlus2 c);
+    public abstract boolean peutEtrePoseeSur(CartePlus2 c);
 
-    abstract boolean peutEtrePoseeSur(CartePlus4 c);
+    public abstract boolean peutEtrePoseeSur(CartePlus4 c);
 /*
     public String toString() {
         return "Carte{" + "valeur =" + valeur + ", couleur =" + couleur + '}';
     }*/
 
-   protected void setUno(Uno uno) {
+    protected void setUno(Uno uno) {
         this.uno = uno;
     }
 
@@ -61,7 +61,7 @@ public abstract class Carte {
         return couleur;
     }
 
-    protected void setCouleur(Couleur couleur) {
+    public void setCouleur(Couleur couleur) {
         this.couleur = couleur;
     }
 

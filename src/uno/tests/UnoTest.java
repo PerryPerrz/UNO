@@ -57,7 +57,7 @@ class UnoTest {
         int indiceJoueur = uno.getNoJoueurPlay();
         uno.changerDeJoueur();
         if(indiceJoueur == uno.nbJoueurs() - 1){    //Si le joueur qui joue est le dernier, on repasse au premier
-            assertEquals(indiceJoueur,0);
+            assertEquals(uno.getNoJoueurPlay(),0);
         }
         else{
             assertEquals(indiceJoueur,uno.getNoJoueurPlay() - 1);
