@@ -57,7 +57,7 @@ public abstract class Carte {
         this.uno = uno;
     }
 
-    protected Couleur getCouleur() {
+    public Couleur getCouleur() {
         return couleur;
     }
 

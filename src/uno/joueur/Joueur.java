@@ -24,11 +24,15 @@ public abstract class Joueur {
         str.append("Joueur").append(this.uno).append(this.nom).append(this.numero);
         return str.toString();
     }
+
     public PaquetDeCartes getPdc() {
         return pdc;
     }
-
     public String getNom() {
         return nom;
+    }
+
+    public void setPdc(PaquetDeCartes pdc) {
+        this.pdc = pdc;
     }
 }

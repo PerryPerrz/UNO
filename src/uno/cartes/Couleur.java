@@ -11,7 +11,7 @@ public enum Couleur {
 
 	private String nom;
 
-	private Couleur(String nomColor) {
+	Couleur(String nomColor) {
 		boolean b;
 		b = (nomColor.equals("Rouge") || nomColor.equals("Vert") || nomColor.equals("Bleu")
 				|| nomColor.equals("Jaune")); // Quand on veut comparer 2 chaines de caractères on utilise "equals" et non "=="
