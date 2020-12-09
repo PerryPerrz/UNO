@@ -304,7 +304,7 @@ public class PaquetDeCartes implements Iterator<Carte> {
 		return this.getPaquet().get(i);
 	}
 
-	//Enlèvz une carte à un indice donné
+	//Enlève une carte à un indice donné
 	public void removeCarteIndex(int i){
 		this.getPaquet().remove(i);
 	}

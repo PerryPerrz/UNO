@@ -1,6 +1,7 @@
 package uno.joueur;
 
 import uno.Uno;
+import uno.cartes.Carte;
 import uno.cartes.PaquetDeCartes;
 
 public abstract class Joueur {
@@ -17,7 +18,7 @@ public abstract class Joueur {
         this.numero = no;
     }
 
-    abstract void jouer(String coup);
+    abstract void jouer(String coup) throws CoupIncorrect;
 
     public String toString() {
         StringBuilder str = new StringBuilder();

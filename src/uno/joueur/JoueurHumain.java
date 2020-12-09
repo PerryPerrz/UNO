@@ -14,8 +14,51 @@ public class JoueurHumain extends Joueur {
     }
 
     @Override
-    void jouer(String coup) {
+    void jouer(String coup) throws CoupIncorrect {
+        Matcher matcher;
+        String strNb;
+        int indiceCarte;
+        Carte car;
 
+        matcher = Pattern.compile("\\d+").matcher(coup);
+
+        strNb = matcher.group(0);
+        indiceCarte = Integer.parseInt(strNb); //On récupère l'indice de la carte pour pouvoir la remove une fois que l'on à ajouté celle-ci sur le talon
+
+        if (coup.equals("p")) { //On vérifie que toute la chainde de caractère est égale à 'p'
+            this.getPdc().ajouter(uno.getPioche().piocher());
+            if (uno.getTalon().getSommet().peutEtreRecouverte(this.pdc.getSommet())) {
+                uno.getTalon().ajouter(this.getPdc().piocher());
+            }
+        } else {
+            if (!matcher.find()) { //Si il y a aucun nombre, si le joueur veut passer son tour
+                uno.changerDeJoueur();
+            } else {
+                car = this.carteChoisie(coup);
+                if (uno.getTalon().getSommet().peutEtreRecouverte(car)) {
+                    uno.getTalon().ajouter(car);
+
+                    this.pdc.removeCarteIndex(indiceCarte);
+                    if (car.effet() == '1' || car.effet() == '4') { //On gère le cas lorsque la carte est un joker ou bien un plus 4
+                        coup = coup.replace(strNb, ""); //On garde que les couleurs
+                        switch (coup.charAt(0)) {
+                            case 'r':
+                                this.getPdc().getSommet().setCouleur(Couleur.ROUGE);
+                                break;
+                            case 'v':
+                                this.getPdc().getSommet().setCouleur(Couleur.VERT);
+                                break;
+                            case 'b':
+                                this.getPdc().getSommet().setCouleur(Couleur.BLEU);
+                                break;
+                            case 'j':
+                                this.getPdc().getSommet().setCouleur(Couleur.JAUNE);
+                                break;
+                        }
+                    }
+                }
+            }
+        }
     }
 
     public Carte carteChoisie(String coup) throws CoupIncorrect {
