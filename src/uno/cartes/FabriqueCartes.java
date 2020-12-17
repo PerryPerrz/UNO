@@ -19,26 +19,23 @@ public class FabriqueCartes {
 		return new PaquetDeCartes();
 	}
 
-	public static PaquetDeCartes getPaquet1Vert() {
+	public static PaquetDeCartes getPaquet1Vert(Uno uno) {
 		PaquetDeCartes paq = new PaquetDeCartes();
-		Uno uno = new Uno();
 
 		paq.ajouter(new CarteChiffre(uno,Couleur.VERT,6));
 		return paq;
 	}
 
-	public static PaquetDeCartes getPaquet2Bleu() {
+	public static PaquetDeCartes getPaquet2Bleu(Uno uno) {
 		PaquetDeCartes paq = new PaquetDeCartes();
-		Uno uno = new Uno();
 
 		paq.ajouter(new CarteChiffre(uno,Couleur.BLEU,1));
 		paq.ajouter(new CarteChiffre(uno,Couleur.BLEU,3));
 		return paq;
 	}
 
-	public static PaquetDeCartes getPaquet5Vert() {
+	public static PaquetDeCartes getPaquet5Vert(Uno uno) {
 		PaquetDeCartes paq = new PaquetDeCartes();
-		Uno uno = new Uno();
 
 		for (int i = 1; i <= 5; ++i) {
 			paq.ajouter(new CarteChiffre(uno,Couleur.VERT,i)); // Couleur est une énumération
@@ -46,9 +43,8 @@ public class FabriqueCartes {
 		return paq;
 	}
 
-	public static PaquetDeCartes getPaquetUno() {
+	public static PaquetDeCartes getPaquetUno(Uno uno) {
 		PaquetDeCartes paq = new PaquetDeCartes();
-		Uno uno = new Uno();
 
 		paq.ajouter(new CarteChiffre(uno,Couleur.ROUGE,0)); //Un 0 par couleur
 		paq.ajouter(new CarteChiffre(uno,Couleur.VERT,0));

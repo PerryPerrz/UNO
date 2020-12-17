@@ -18,7 +18,7 @@ public class Uno {
     private int noJoueurPlay;
 
     public Uno(){
-
+        sensHoraire = true;
     }
 
     public void initialiser(int nbJoueur){
@@ -40,7 +40,7 @@ public class Uno {
 
     public void distribuerCartes(){
         FabriqueCartes fab = FabriqueCartes.getInstance();
-        this.pioche = FabriqueCartes.getPaquetUno();
+        this.pioche = FabriqueCartes.getPaquetUno(this);
         for(int i = 0 ; i < 7 ; ++ i){ //On donne 7 cartes par joueurs.
             for(int j = 0 ; j < this.nbJoueurs(); ++j){ //On parcours tous les joueurs.
                 this.getPlayers()[j].getPdc().ajouter(pioche.piocher());
@@ -116,5 +116,9 @@ public class Uno {
 
     public boolean isSensHoraire() {
         return sensHoraire;
+    }
+
+    public void jeu(){ //Boucle de jeu
+
     }
 }

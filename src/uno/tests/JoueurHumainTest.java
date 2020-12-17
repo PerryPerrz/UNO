@@ -18,21 +18,23 @@ class JoueurHumainTest {
 
     @BeforeEach
     void setUp() {
+        uno = new Uno();
+
         fabc = FabriqueCartes.getInstance();
-        pdc1 = FabriqueCartes.getPaquet1Vert();
+
+        pdc1 = FabriqueCartes.getPaquet1Vert(uno);
         pdc1.ajouter(new CarteChangementDeSens(uno,Couleur.BLEU));
 
-        pdc2 = FabriqueCartes.getPaquet2Bleu();
+        pdc2 = FabriqueCartes.getPaquet2Bleu(uno);
         pdc2.ajouter(new CartePlus4(uno));
 
-        pdc3 = FabriqueCartes.getPaquet5Vert();
+        pdc3 = FabriqueCartes.getPaquet5Vert(uno);
         pdc3.ajouter(new CarteJoker(uno));
         pdc3.ajouter(new CartePasseTonTour(uno,Couleur.ROUGE));
 
-        pdc4 = FabriqueCartes.getPaquetUno();
+        pdc4 = FabriqueCartes.getPaquetUno(uno);
         pdc4.ajouter(new CartePlus2(uno,Couleur.JAUNE));
 
-        uno = new Uno();
         player = new JoueurHumain(uno,"playerOne",1);
     }
 

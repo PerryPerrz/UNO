@@ -20,14 +20,15 @@ class PaquetDeCartesTest {
 
     @BeforeEach
     void setUp() {
+        uno = new Uno();
+
         fabCartes = FabriqueCartes.getInstance();
         pdc = FabriqueCartes.getPaquetVide();
-        pdc2 = FabriqueCartes.getPaquet1Vert();
-        pdc3 = FabriqueCartes.getPaquet2Bleu();
-        pdc4 = FabriqueCartes.getPaquet5Vert();
-        pdc5 = FabriqueCartes.getPaquetUno();
+        pdc2 = FabriqueCartes.getPaquet1Vert(uno);
+        pdc3 = FabriqueCartes.getPaquet2Bleu(uno);
+        pdc4 = FabriqueCartes.getPaquet5Vert(uno);
+        pdc5 = FabriqueCartes.getPaquetUno(uno);
 
-        uno = new Uno();
         carChiffre = new CarteChiffre(uno,Couleur.ROUGE,6);
         carJoker = new CarteJoker(uno);
         carPlus2 = new CartePlus2(uno,Couleur.VERT);
