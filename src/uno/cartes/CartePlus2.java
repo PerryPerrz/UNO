@@ -53,4 +53,8 @@ public class CartePlus2 extends Carte {
     public boolean peutEtrePoseeSur(CartePlus4 c) {
         return this.estDeCouleurCompatible(c.getCouleur());
     }
+
+    public String toString(){
+        return "Plus2" + this.getCouleur().getNom();
+    }
 }

@@ -1,6 +1,7 @@
 package uno;
 
 import uno.cartes.FabriqueCartes;
+import uno.dialogue.DialogueLigneDeCommande;
 import uno.joueur.Bot;
 import uno.joueur.Joueur;
 import uno.joueur.JoueurHumain;
@@ -16,6 +17,7 @@ public class Uno {
     private boolean sensHoraire;
     private int noJoueurDistrib;
     private int noJoueurPlay;
+    private DialogueLigneDeCommande dialogue;
 
     public Uno(){
         sensHoraire = true;
@@ -118,7 +120,21 @@ public class Uno {
         return sensHoraire;
     }
 
-    public void jeu(){ //Boucle de jeu
+    public void setDialogue(DialogueLigneDeCommande dialogue) {
+        this.dialogue = dialogue;
+    }
 
+    public boolean isPartieFinie(){
+        for(int i = 0 ; i < this.nbJoueurs() - 1 ; ++i){
+            if(this.getPlayers()[i].getPdc().estVide()){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void jeu(){ //Boucle de jeu
+        DialogueLigneDeCommande dialogue = new DialogueLigneDeCommande(this) ;
+        this.setDialogue(dialogue) ;
     }
 }

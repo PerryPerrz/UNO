@@ -50,4 +50,8 @@ public class CartePlus4 extends Carte{
     public boolean peutEtrePoseeSur(CartePlus4 c) {
         return true;
     }
+
+    public String toString(){
+        return "Plus4" + getCouleur().getNom();
+    }
 }

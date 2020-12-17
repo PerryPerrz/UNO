@@ -14,7 +14,7 @@ public class JoueurHumain extends Joueur {
     }
 
     @Override
-    void jouer(String coup) throws CoupIncorrect {
+    public void jouer(String coup) throws CoupIncorrect {
         Matcher matcher;
         String strNb;
         int indiceCarte;
@@ -93,5 +93,10 @@ public class JoueurHumain extends Joueur {
             }
         }
         return this.getPdc().getCarteIndex(indiceCarte);
+    }
+
+    @Override
+    public boolean isUnBot() {
+        return false;
     }
 }

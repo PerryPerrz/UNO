@@ -18,7 +18,19 @@ public abstract class Joueur {
         this.numero = no;
     }
 
-    abstract void jouer(String coup) throws CoupIncorrect;
+    public abstract void jouer(String coup) throws CoupIncorrect;
+
+    //Fonction qui retourne le score du joueur
+    public int getScore(){
+        int score = 0;
+        while(this.getPdc().hasNext()){
+            score += this.getPdc().next().getValeur();
+        }
+        return score;
+    }
+
+    //Fonction qui indique quel joueur est en train de jouer
+    public abstract boolean isUnBot();
 
     public String toString() {
         StringBuilder str = new StringBuilder();

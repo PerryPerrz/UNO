@@ -60,4 +60,8 @@ public class CarteChiffre extends Carte {
     public void setChiffre(int valeur) {
         this.chiffre = valeur;
     }
+
+    public String toString(){
+        return this.getValeur() + this.getCouleur().getNom();
+    }
 }

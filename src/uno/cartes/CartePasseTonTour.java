@@ -52,4 +52,8 @@ public class CartePasseTonTour extends Carte{
     public boolean peutEtrePoseeSur(CartePlus4 c) {
         return this.estDeCouleurCompatible(c.getCouleur());
     }
+
+    public String toString(){
+        return "PasseTonTour" + this.getCouleur().getNom();
+    }
 }

@@ -48,4 +48,8 @@ public class CarteJoker extends Carte{
     public boolean peutEtrePoseeSur(CartePlus4 c) {
         return true;
     }
+
+    public String toString(){
+        return "Joker" + getCouleur().getNom();
+    }
 }

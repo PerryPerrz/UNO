@@ -13,7 +13,7 @@ public class Bot extends Joueur {
     }
 
     @Override
-    void jouer(String coup){
+    public void jouer(String coup){
         Random random = new Random();
         int nb,cpt;
         cpt = 0;
@@ -54,5 +54,10 @@ public class Bot extends Joueur {
                     throw new IllegalStateException("Unexpected value: " + nb);
             }
         }
+    }
+
+    @Override
+    public boolean isUnBot() {
+        return true;
     }
 }

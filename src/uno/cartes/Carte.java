@@ -48,10 +48,8 @@ public abstract class Carte {
     public abstract boolean peutEtrePoseeSur(CartePlus2 c);
 
     public abstract boolean peutEtrePoseeSur(CartePlus4 c);
-/*
-    public String toString() {
-        return "Carte{" + "valeur =" + valeur + ", couleur =" + couleur + '}';
-    }*/
+
+    public abstract String toString();
 
     protected void setUno(Uno uno) {
         this.uno = uno;
