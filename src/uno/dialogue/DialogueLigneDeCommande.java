@@ -66,8 +66,7 @@ public class DialogueLigneDeCommande {
                         this.uno.getPlayers()[this.uno.getNoJoueurPlay()].jouer(coup);
                         joueurIncorrect = false;
                     } catch (CoupIncorrect coupIncorrect) {
-                        System.out.println("Attention, le coup que vous demandez de faire est inexécutable!");
-                        System.out.println("Veuillez rentrer un autre coup!");
+                        System.out.println(coupIncorrect.getMessage() + "\nVeuillez rentrer un autre coup!" );
                         scanner = new Scanner(System.in);
                         coup = scanner.nextLine();
                         joueurIncorrect = true;

@@ -34,32 +34,38 @@ public class JoueurHumain extends Joueur {
             this.getPdc().ajouter(uno.getPioche().piocher());
             if (uno.getTalon().getSommet().peutEtreRecouverte(this.pdc.getSommet())) {
                 uno.getTalon().ajouter(this.getPdc().piocher());
+                this.uno.getTalon().getSommet().appliquerEffet();
             }
         } else {
-            if (!matcher.find()) { //Si il y a aucun nombre, si le joueur veut passer son tour
+            if (strNb.equals("")) { //Si il y a aucun nombre, si le joueur veut passer son tour
                 uno.changerDeJoueur();
             } else {
                 car = this.carteChoisie(coup);
                 if (uno.getTalon().getSommet().peutEtreRecouverte(car)) {
                     uno.getTalon().ajouter(car);
-
                     this.pdc.removeCarteIndex(indiceCarte);
+                    this.uno.getTalon().getSommet().appliquerEffet();
                     if (car.effet() == '1' || car.effet() == '4') { //On gère le cas lorsque la carte est un joker ou bien un plus 4
                         coup = coup.replace(strNb, ""); //On garde que les couleurs
-                        switch (coup.charAt(0)) {
-                            case 'r':
-                                this.getPdc().getSommet().setCouleur(Couleur.ROUGE);
-                                break;
-                            case 'v':
-                                this.getPdc().getSommet().setCouleur(Couleur.VERT);
-                                break;
-                            case 'b':
-                                this.getPdc().getSommet().setCouleur(Couleur.BLEU);
-                                break;
-                            case 'j':
-                                this.getPdc().getSommet().setCouleur(Couleur.JAUNE);
-                                break;
+                        if (coup.length() == 1) { //On veut prendre que le première lettre : par exemple, si l'utilisateur écrit "violet" ça ne doit pas marcher
+                            switch (coup.charAt(0)) {
+                                case 'r':
+                                    this.getPdc().getSommet().setCouleur(Couleur.ROUGE);
+                                    break;
+                                case 'v':
+                                    this.getPdc().getSommet().setCouleur(Couleur.VERT);
+                                    break;
+                                case 'b':
+                                    this.getPdc().getSommet().setCouleur(Couleur.BLEU);
+                                    break;
+                                case 'j':
+                                    this.getPdc().getSommet().setCouleur(Couleur.JAUNE);
+                                    break;
+                            }
                         }
+                    }
+                    else{ //Si l'utilisateur rentre une couleur invalide (plus d'un caractère)
+                        throw new CoupIncorrect("Cette couleur n'existe pas!");
                     }
                 }
                 else{ //Si on peut pas la poser
@@ -84,13 +90,13 @@ public class JoueurHumain extends Joueur {
         else {
             throw new CoupIncorrect("Attention, aucun entiers trouvés!");
         }
-        if(indiceCarte >= this.getPdc().getNombreDeCartes() && indiceCarte < 0){
+        if(indiceCarte >= this.getPdc().getNombreDeCartes() || indiceCarte < 0){
             throw new CoupIncorrect("Attention, la carte n'existe pas!");
         }
         else{ //La carte existe, il faut regarder si la couleur est bonne et +4/joker
             coup = coup.replace(strNb,""); //On remplace les nombres par "" pour pouvoir récupérer la couleur, pour ce faire, on peut seulement remplacer un string par un string (avec replace) donc il faut passer par un string (strNb)
             if(this.getPdc().getCarteIndex(indiceCarte).effet() == 1 || this.getPdc().getCarteIndex(indiceCarte).effet() == 4) { //Si c'est un joker ou un plus 4, on change la couleur de la carte.
-                if(!(coup.charAt(0) == 'r') && !(coup.charAt(0) == 'v') && !(coup.charAt(0) == 'b') && !(coup.charAt(0) == 'j')){ //Il ne reste plus que les lettres qui représentent les couleurs, il suffit donc de prendre le premier char.
+                if(coup.equals("") || !(coup.charAt(0) == 'r') && !(coup.charAt(0) == 'v') && !(coup.charAt(0) == 'b') && !(coup.charAt(0) == 'j')){ //Il ne reste plus que les lettres qui représentent les couleurs, il suffit donc de prendre le premier char.
                     throw new CoupIncorrect("Attention, la couleur donnée n'existe pas!");
                 }
             }
