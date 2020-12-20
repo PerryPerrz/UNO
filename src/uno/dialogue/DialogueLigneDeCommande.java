@@ -53,6 +53,7 @@ public class DialogueLigneDeCommande {
                 } catch (CoupIncorrect coupIncorrect) {
                     coupIncorrect.printStackTrace();
                 }
+                System.out.println("Le bot possède : " + this.uno.getPlayers()[this.uno.getNoJoueurPlay()].getPdc().getNombreDeCartes() + " cartes!");
             }
             else { //C'est le tour du joueur
                 System.out.println("Votre main : ");
