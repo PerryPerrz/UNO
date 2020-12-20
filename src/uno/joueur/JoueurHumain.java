@@ -84,7 +84,7 @@ public class JoueurHumain extends Joueur {
         else {
             throw new CoupIncorrect("Attention, aucun entiers trouvés!");
         }
-        if(indiceCarte >= this.getPdc().getNombreDeCartes() || indiceCarte < 0){
+        if(indiceCarte >= this.getPdc().getNombreDeCartes() && indiceCarte < 0){
             throw new CoupIncorrect("Attention, la carte n'existe pas!");
         }
         else{ //La carte existe, il faut regarder si la couleur est bonne et +4/joker
