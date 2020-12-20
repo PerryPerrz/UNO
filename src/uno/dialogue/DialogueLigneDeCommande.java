@@ -42,6 +42,7 @@ public class DialogueLigneDeCommande {
         else{
             System.out.println("La carte au sommet du talon est : " + this.uno.getTalon().getSommet().toString());
             if(this.uno.getPlayers()[this.uno.getNoJoueurPlay()].isUnBot()){ //Si c'est le tour du bot
+                System.out.println("Le bot joue!");
                 try {
                     this.uno.getPlayers()[this.uno.getNoJoueurPlay()].jouer("");
                     try {
@@ -55,8 +56,8 @@ public class DialogueLigneDeCommande {
             }
             else { //C'est le tour du joueur
                 System.out.println("Votre main : ");
-                while(this.uno.getPlayers()[this.uno.getNoJoueurPlay()].getPdc().hasNext()){
-                    System.out.println(this.uno.getPlayers()[this.uno.getNoJoueurPlay()].getPdc().next().toString());
+               for(int i = 0 ; i < this.uno.getPlayers()[this.uno.getNoJoueurPlay()].getPdc().getNombreDeCartes() ; ++i){
+                    System.out.println("Carte n° " + i + " : " + this.uno.getPlayers()[this.uno.getNoJoueurPlay()].getPdc().getCarteIndex(i).toString());
                 }
                 System.out.println("Quel coup voulez-vous effectuer ?");
                 coup = scanner.nextLine();

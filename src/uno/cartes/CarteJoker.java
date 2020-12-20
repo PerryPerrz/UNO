@@ -50,6 +50,11 @@ public class CarteJoker extends Carte{
     }
 
     public String toString(){
-        return "Joker" + getCouleur().getNom();
+        if(this.estSansCouleur()){
+            return "Joker " + "PasDeCouleur";
+        }
+        else{
+            return "Joker " + getCouleur().getNom();
+        }
     }
 }

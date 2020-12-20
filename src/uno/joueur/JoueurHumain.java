@@ -22,8 +22,13 @@ public class JoueurHumain extends Joueur {
 
         matcher = Pattern.compile("\\d+").matcher(coup);
 
-        strNb = matcher.group(0);
-        indiceCarte = Integer.parseInt(strNb); //On récupère l'indice de la carte pour pouvoir la remove une fois que l'on à ajouté celle-ci sur le talon
+        if(matcher.find()){ //Je groupe seulement si le matcher à trouvé un entier
+            strNb = matcher.group();
+            indiceCarte = Integer.parseInt(strNb); //On récupère l'indice de la carte pour pouvoir la remove une fois que l'on à ajouté celle-ci sur le talon
+        }
+        else{
+            throw new CoupIncorrect("La fonction n'a trouvé aucun entiers!");
+        }
 
         if (coup.equals("p")) { //On vérifie que toute la chainde de caractère est égale à 'p'
             this.getPdc().ajouter(uno.getPioche().piocher());
@@ -56,6 +61,9 @@ public class JoueurHumain extends Joueur {
                                 break;
                         }
                     }
+                }
+                else{ //Si on peut pas la poser
+                    throw new CoupIncorrect("On ne peut pas poser cette carte!");
                 }
             }
         }

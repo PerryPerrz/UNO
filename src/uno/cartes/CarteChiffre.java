@@ -42,7 +42,7 @@ public class CarteChiffre extends Carte {
     }
 
     public boolean peutEtrePoseeSur(CarteJoker c) {
-        return this.estDeCouleurCompatible(c.getCouleur());
+        return this.estSansCouleur() || this.estDeCouleurCompatible(c.getCouleur());
     }
 
     public boolean peutEtrePoseeSur(CartePasseTonTour c) {
@@ -54,7 +54,7 @@ public class CarteChiffre extends Carte {
     }
 
     public boolean peutEtrePoseeSur(CartePlus4 c) {
-        return this.estDeCouleurCompatible(c.getCouleur());
+        return this.estSansCouleur() || this.estDeCouleurCompatible(c.getCouleur());
     }
 
     public void setChiffre(int valeur) {
@@ -62,6 +62,6 @@ public class CarteChiffre extends Carte {
     }
 
     public String toString(){
-        return this.getValeur() + this.getCouleur().getNom();
+        return this.getValeur() + " " + this.getCouleur().getNom();
     }
 }

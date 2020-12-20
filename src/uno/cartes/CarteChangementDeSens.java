@@ -37,7 +37,7 @@ public class CarteChangementDeSens extends Carte {
     }
 
     public boolean peutEtrePoseeSur(CarteJoker c) {
-        return this.estDeCouleurCompatible(c.getCouleur());
+        return this.estSansCouleur() || this.estDeCouleurCompatible(c.getCouleur());
     }
 
     public boolean peutEtrePoseeSur(CartePasseTonTour c) {
@@ -49,10 +49,10 @@ public class CarteChangementDeSens extends Carte {
     }
 
     public boolean peutEtrePoseeSur(CartePlus4 c) {
-        return this.estDeCouleurCompatible(c.getCouleur());
+        return this.estSansCouleur() || this.estDeCouleurCompatible(c.getCouleur());
     }
 
     public String toString(){
-        return "ChangementDeSens" + this.getCouleur().getNom();
+        return "ChangementDeSens " + this.getCouleur().getNom();
     }
 }

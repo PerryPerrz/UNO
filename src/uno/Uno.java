@@ -43,6 +43,7 @@ public class Uno {
     public void distribuerCartes(){
         FabriqueCartes fab = FabriqueCartes.getInstance();
         this.pioche = FabriqueCartes.getPaquetUno(this);
+        this.pioche.melanger();
         for(int i = 0 ; i < 7 ; ++ i){ //On donne 7 cartes par joueurs.
             for(int j = 0 ; j < this.nbJoueurs(); ++j){ //On parcours tous les joueurs.
                 this.getPlayers()[j].getPdc().ajouter(pioche.piocher());
@@ -135,6 +136,11 @@ public class Uno {
 
     public void jeu(){ //Boucle de jeu
         DialogueLigneDeCommande dialogue = new DialogueLigneDeCommande(this) ;
-        this.setDialogue(dialogue) ;
+        this.setDialogue(dialogue);
+        dialogue.mettreAJour(); //On complète le dialogue
+        while(!isPartieFinie()) {
+            this.changerDeJoueur();
+            dialogue.mettreAJour();
+        }
     }
 }

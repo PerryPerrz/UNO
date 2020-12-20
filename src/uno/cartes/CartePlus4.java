@@ -52,6 +52,11 @@ public class CartePlus4 extends Carte{
     }
 
     public String toString(){
-        return "Plus4" + getCouleur().getNom();
+        if(this.estSansCouleur()){
+            return "Plus4 " + "PasDeCouleur";
+        }
+        else{
+            return "Plus4 " + getCouleur().getNom();
+        }
     }
 }

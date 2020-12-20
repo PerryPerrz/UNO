@@ -19,8 +19,8 @@ public class Bot extends Joueur {
         cpt = 0;
         boolean cartePasTrouvee = true;
         boolean cartePosee = false;
-        while(pdc.hasNext() && cartePasTrouvee){
-            cartePasTrouvee = !(this.uno.getTalon().getSommet().peutEtreRecouverte(pdc.next()));
+        while(cpt < this.getPdc().getNombreDeCartes() && cartePasTrouvee){
+            cartePasTrouvee = !(this.uno.getTalon().getSommet().peutEtreRecouverte(pdc.getCarteIndex(cpt)));
             cpt += 1;
         }
         if(cartePasTrouvee) {

@@ -38,7 +38,7 @@ public class CartePasseTonTour extends Carte{
     }
 
     public boolean peutEtrePoseeSur(CarteJoker c) {
-        return this.estDeCouleurCompatible(c.getCouleur());
+        return this.estSansCouleur() || this.estDeCouleurCompatible(c.getCouleur());
     }
 
     public boolean peutEtrePoseeSur(CartePasseTonTour c) {
@@ -50,10 +50,10 @@ public class CartePasseTonTour extends Carte{
     }
 
     public boolean peutEtrePoseeSur(CartePlus4 c) {
-        return this.estDeCouleurCompatible(c.getCouleur());
+        return this.estSansCouleur() || this.estDeCouleurCompatible(c.getCouleur());
     }
 
     public String toString(){
-        return "PasseTonTour" + this.getCouleur().getNom();
+        return "PasseTonTour " + this.getCouleur().getNom();
     }
 }
