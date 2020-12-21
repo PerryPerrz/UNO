@@ -8,7 +8,7 @@ import java.util.Random;
 public class Bot extends Joueur {
 
     public Bot(Uno uno, String nom, int no, int difficulte){
-       super(uno,nom,no);
+        super(uno,nom,no);
     }
 
     @Override
@@ -25,6 +25,7 @@ public class Bot extends Joueur {
         cpt -= 1; //Exemple, si la première carte que l'on veut poser est posable, cartePasTrouvee = false, on incrémente cpt, puis sort de la boucle, or cpt "pointe" la carte d'après, il faut donc lui soustraire 1.
         if(cartePasTrouvee) {
             this.getPdc().ajouter(uno.getPioche().piocher());
+            this.uno.getDialogue().affichagePiocheBot();
             if (this.uno.getTalon().getSommet().peutEtreRecouverte(this.getPdc().getSommet())) {
                 this.uno.getTalon().ajouter(this.getPdc().piocher()); //On ajoute la carte du joueur sur le talon et retire la carte de la main du joueur (piocher)
                 this.uno.getTalon().getSommet().appliquerEffet();

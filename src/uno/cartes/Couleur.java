@@ -9,7 +9,7 @@ package uno.cartes;
 public enum Couleur {
 	ROUGE("Rouge"), VERT("Vert"), BLEU("Bleu"), JAUNE("Jaune");
 
-	private String nom;
+	private final String nom;
 
 	Couleur(String nomColor) {
 		boolean b;

@@ -37,7 +37,7 @@ public class Uno {
         this.players = new Joueur[nbJoueur];
         this.players[0] = new JoueurHumain(this, "Humain", 0);
         for(int i = 1 ; i < nbJoueur ; ++i){
-            this.players[i] = new Bot(this,"Bot " + i,i,1);
+            this.players[i] = new Bot(this,"Bot n° " + i,i,1);
         }
     }
 
@@ -82,7 +82,7 @@ public class Uno {
 
     public void choisirQuiJoue(){
         if(noJoueurDistrib == this.nbJoueurs() - 1){ //Si on est au dernier uno.joueur, on revient au premier
-           this.noJoueurPlay = 0;
+            this.noJoueurPlay = 0;
         }
         else{
             this.noJoueurPlay = noJoueurDistrib + 1; //Le uno.joueur qui joue est celui qui suit le uno.joueur qui distribue
@@ -94,23 +94,47 @@ public class Uno {
     }
 
     public void changerDeJoueur(){ //Le joueur actuel passe son tours
-        if(this.getNoJoueurPlay() == this.nbJoueurs() - 1){ //Si on est au dernier uno.joueur, on revient au premier
-            this.noJoueurPlay = 0;
+        if(sensHoraire){ //On change le joueur selon le sens horaire
+            if(this.getNoJoueurPlay() == this.nbJoueurs() - 1){ //Si on est au dernier uno.joueur, on revient au premier
+                this.noJoueurPlay = 0;
+            }
+            else{
+                this.noJoueurPlay = this.getNoJoueurPlay() + 1;
+            }
         }
         else{
-            this.noJoueurPlay = this.getNoJoueurPlay() + 1;
+            if(this.getNoJoueurPlay() == 0){ //Si on est au dernier uno.joueur, on revient au premier (dans le sens inverse)
+                this.noJoueurPlay = this.nbJoueurs() - 1;
+            }
+            else{
+                this.noJoueurPlay = this.getNoJoueurPlay() - 1;
+            }
         }
     }
 
     public void distribuerCarteSuivant(int nb){ //On distribue le nombre de cartes aux joueurs suivants
-        if(this.getNoJoueurPlay() == this.nbJoueurs() - 1){ //Je ne met pas le "if" dans la boucle for car je préfere que le programme effectue une seule fois la conditon if. (Je pense que c'est le mieux en terme d'optimisation)
-            for (int i = 0; i < nb; ++i) {
-                this.getPlayers()[0].getPdc().ajouter(pioche.piocher());
+        if(sensHoraire){
+            if(this.getNoJoueurPlay() == this.nbJoueurs() - 1){ //Je ne met pas le "if" dans la boucle for car je préfere que le programme effectue une seule fois la conditon if. (Je pense que c'est le mieux en terme d'optimisation)
+                for (int i = 0; i < nb; ++i) {
+                    this.getPlayers()[0].getPdc().ajouter(pioche.piocher());
+                }
+            }
+            else {
+                for (int i = 0; i < nb; ++i) {
+                    this.getPlayers()[this.getNoJoueurPlay() + 1].getPdc().ajouter(pioche.piocher()); //+ 1, on ajoute les cartes au joueur suivant
+                }
             }
         }
-        else {
-            for (int i = 0; i < nb; ++i) {
-                this.getPlayers()[this.getNoJoueurPlay() + 1].getPdc().ajouter(pioche.piocher()); //+ 1, on ajoute les cartes au joueur suivant
+        else{
+            if(this.getNoJoueurPlay() == 0){ //Je ne met pas le "if" dans la boucle for car je préfere que le programme effectue une seule fois la conditon if. (Je pense que c'est le mieux en terme d'optimisation)
+                for (int i = 0; i < nb; ++i) {
+                    this.getPlayers()[this.nbJoueurs() - 1].getPdc().ajouter(pioche.piocher());
+                }
+            }
+            else {
+                for (int i = 0; i < nb; ++i) {
+                    this.getPlayers()[this.getNoJoueurPlay() - 1].getPdc().ajouter(pioche.piocher()); //- 1, on ajoute les cartes au joueur suivant
+                }
             }
         }
     }
@@ -163,6 +187,9 @@ public class Uno {
     public void jeu(){ //Boucle de jeu
         DialogueLigneDeCommande dialogue = new DialogueLigneDeCommande(this) ;
         this.setDialogue(dialogue);
+        this.noJoueurPlay -= 1; //On se met au joueur qui précede le joueur actuel
+        this.getTalon().getSommet().appliquerEffet(); //On applique l'effet sur le joueur suivant.
+        this.noJoueurPlay += 1; //On revient au joueur actuel
         dialogue.mettreAJour(); //On complète le dialogue
         while(!isPartieFinie()) {
             this.changerDeJoueur();

@@ -15,7 +15,7 @@ import java.util.Scanner;
  */
 
 public class PaquetDeCartes implements Iterator<Carte> {
-	private ArrayList<Carte> paquet;
+	private final ArrayList<Carte> paquet;
 	private int indexCarte;
 
 	/**

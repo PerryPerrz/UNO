@@ -57,7 +57,7 @@ public class DialogueLigneDeCommande {
             }
             else { //C'est le tour du joueur
                 System.out.println("Votre main : ");
-               for(int i = 0 ; i < this.uno.getPlayers()[this.uno.getNoJoueurPlay()].getPdc().getNombreDeCartes() ; ++i){
+                for(int i = 0 ; i < this.uno.getPlayers()[this.uno.getNoJoueurPlay()].getPdc().getNombreDeCartes() ; ++i){
                     System.out.println("Carte n° " + i + " : " + this.uno.getPlayers()[this.uno.getNoJoueurPlay()].getPdc().getCarteIndex(i).toString());
                 }
                 System.out.println("Quel coup voulez-vous effectuer ?");
@@ -78,6 +78,10 @@ public class DialogueLigneDeCommande {
     }
 
     public void affichagePTT(){
-            System.out.println("Vous devez passer votre tour!");
+        System.out.println("Vous devez passer votre tour!");
+    }
+
+    public void affichagePiocheBot(){
+        System.out.println("Le bot a pioché!");
     }
 }
