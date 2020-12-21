@@ -76,4 +76,8 @@ public class DialogueLigneDeCommande {
             }
         }
     }
+
+    public void affichagePTT(){
+            System.out.println("Vous devez passer votre tour!");
+    }
 }

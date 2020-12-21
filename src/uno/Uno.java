@@ -1,5 +1,6 @@
 package uno;
 
+import uno.cartes.Couleur;
 import uno.cartes.FabriqueCartes;
 import uno.dialogue.DialogueLigneDeCommande;
 import uno.joueur.Bot;
@@ -51,6 +52,27 @@ public class Uno {
         }
         this.talon = FabriqueCartes.getPaquetVide(); //Au début, le talon est un paquet vide
         this.talon.ajouter(pioche.piocher()); //Une fois que tous les joueurs ont pioché, je met la première carte dans le talon
+        if(this.getTalon().getSommet().effet() == 1 || this.getTalon().getSommet().effet() == 4){ //Si la première carte jouée est un joker/ un plus4, on lui donne une couleur aléatoire
+            Random random = new Random();
+            int couleurRand = random.nextInt(4);
+            switch (couleurRand) {
+                case 0 :
+                    this.getTalon().getSommet().setCouleur(Couleur.BLEU);
+                    break;
+
+                case 1 :
+                    this.getTalon().getSommet().setCouleur(Couleur.VERT);
+                    break;
+
+                case 2 :
+                    this.getTalon().getSommet().setCouleur(Couleur.ROUGE);
+                    break;
+
+                case 3 :
+                    this.getTalon().getSommet().setCouleur(Couleur.JAUNE);
+                    break;
+            }
+        }
     }
 
     public void choisirQuiDistribue(){
@@ -123,6 +145,10 @@ public class Uno {
 
     public void setDialogue(DialogueLigneDeCommande dialogue) {
         this.dialogue = dialogue;
+    }
+
+    public DialogueLigneDeCommande getDialogue() {
+        return dialogue;
     }
 
     public boolean isPartieFinie(){

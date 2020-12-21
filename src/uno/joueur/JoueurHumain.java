@@ -29,7 +29,6 @@ public class JoueurHumain extends Joueur {
         else{
             throw new CoupIncorrect("La fonction n'a trouvé aucun entiers!");
         }
-
         if (coup.equals("p")) { //On vérifie que toute la chainde de caractère est égale à 'p'
             this.getPdc().ajouter(uno.getPioche().piocher());
             if (uno.getTalon().getSommet().peutEtreRecouverte(this.pdc.getSommet())) {
@@ -42,30 +41,34 @@ public class JoueurHumain extends Joueur {
             } else {
                 car = this.carteChoisie(coup);
                 if (uno.getTalon().getSommet().peutEtreRecouverte(car)) {
-                    uno.getTalon().ajouter(car);
-                    this.pdc.removeCarteIndex(indiceCarte);
-                    this.uno.getTalon().getSommet().appliquerEffet();
-                    if (car.effet() == '1' || car.effet() == '4') { //On gère le cas lorsque la carte est un joker ou bien un plus 4
-                        coup = coup.replace(strNb, ""); //On garde que les couleurs
-                        if (coup.length() == 1) { //On veut prendre que le première lettre : par exemple, si l'utilisateur écrit "violet" ça ne doit pas marcher
+                    coup = coup.replace(strNb, ""); //On garde que les couleurs
+                    if (coup.length() == 1) { //On veut prendre que le première lettre : par exemple, si l'utilisateur écrit "violet" ça ne doit pas marcher
+                        System.out.println("1");
+                        if (car.effet() == 1 || car.effet() == 4) { //On gère le cas lorsque la carte est un joker ou bien un plus 4
                             switch (coup.charAt(0)) {
                                 case 'r':
-                                    this.getPdc().getSommet().setCouleur(Couleur.ROUGE);
+                                    car.setCouleur(Couleur.ROUGE);
                                     break;
                                 case 'v':
-                                    this.getPdc().getSommet().setCouleur(Couleur.VERT);
+                                    car.setCouleur(Couleur.VERT);
                                     break;
                                 case 'b':
-                                    this.getPdc().getSommet().setCouleur(Couleur.BLEU);
+                                    car.setCouleur(Couleur.BLEU);
                                     break;
                                 case 'j':
-                                    this.getPdc().getSommet().setCouleur(Couleur.JAUNE);
+                                    car.setCouleur(Couleur.JAUNE);
                                     break;
                             }
+                        } else { //Si l'utilisateur rentre une couleur invalide (plus d'un caractère)
+                            this.uno.changerDeJoueur(); //Le joueur passe son tour
                         }
+                        uno.getTalon().ajouter(car);
+                        this.pdc.removeCarteIndex(indiceCarte);
+                        this.uno.getTalon().getSommet().appliquerEffet();
                     }
                     else{ //Si l'utilisateur rentre une couleur invalide (plus d'un caractère)
-                        throw new CoupIncorrect("Cette couleur n'existe pas!");
+                        this.uno.changerDeJoueur(); //Le joueur passe son tour
+                        this.uno.getDialogue().affichagePTT();
                     }
                 }
                 else{ //Si on peut pas la poser
