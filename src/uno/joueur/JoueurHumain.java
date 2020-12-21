@@ -42,8 +42,7 @@ public class JoueurHumain extends Joueur {
                 car = this.carteChoisie(coup);
                 if (uno.getTalon().getSommet().peutEtreRecouverte(car)) {
                     coup = coup.replace(strNb, ""); //On garde que les couleurs
-                    if (coup.length() == 1) { //On veut prendre que le première lettre : par exemple, si l'utilisateur écrit "violet" ça ne doit pas marcher
-                        System.out.println("1");
+                    if (coup.length() == 0 || coup.length() == 1) { //On veut prendre que le première lettre : par exemple, si l'utilisateur écrit "violet" ça ne doit pas marcher (marche si on à que 1 chiffre ou 1 chiffre et une lettre
                         if (car.effet() == 1 || car.effet() == 4) { //On gère le cas lorsque la carte est un joker ou bien un plus 4
                             switch (coup.charAt(0)) {
                                 case 'r':
@@ -59,15 +58,12 @@ public class JoueurHumain extends Joueur {
                                     car.setCouleur(Couleur.JAUNE);
                                     break;
                             }
-                        } else { //Si l'utilisateur rentre une couleur invalide (plus d'un caractère)
-                            this.uno.changerDeJoueur(); //Le joueur passe son tour
                         }
-                        uno.getTalon().ajouter(car);
-                        this.pdc.removeCarteIndex(indiceCarte);
-                        this.uno.getTalon().getSommet().appliquerEffet();
+                        uno.getTalon().ajouter(car); //On ajoute la carte sur le talon
+                        this.pdc.removeCarteIndex(indiceCarte); //On enlève la carte de la main
+                        this.uno.getTalon().getSommet().appliquerEffet(); //On applique l'effet de la carte posée
                     }
                     else{ //Si l'utilisateur rentre une couleur invalide (plus d'un caractère)
-                        this.uno.changerDeJoueur(); //Le joueur passe son tour
                         this.uno.getDialogue().affichagePTT();
                     }
                 }

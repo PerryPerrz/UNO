@@ -42,7 +42,8 @@ public class DialogueLigneDeCommande {
         else{
             System.out.println("La carte au sommet du talon est : " + this.uno.getTalon().getSommet().toString());
             if(this.uno.getPlayers()[this.uno.getNoJoueurPlay()].isUnBot()){ //Si c'est le tour du bot
-                System.out.println("Le bot joue!");
+                System.out.println("Le " + this.uno.getPlayers()[this.uno.getNoJoueurPlay()].getNom() + " joue!");
+                System.out.println("Le bot possède : " + this.uno.getPlayers()[this.uno.getNoJoueurPlay()].getPdc().getNombreDeCartes() + " cartes!");
                 try {
                     this.uno.getPlayers()[this.uno.getNoJoueurPlay()].jouer("");
                     try {
@@ -53,7 +54,6 @@ public class DialogueLigneDeCommande {
                 } catch (CoupIncorrect coupIncorrect) {
                     coupIncorrect.printStackTrace();
                 }
-                System.out.println("Le bot possède : " + this.uno.getPlayers()[this.uno.getNoJoueurPlay()].getPdc().getNombreDeCartes() + " cartes!");
             }
             else { //C'est le tour du joueur
                 System.out.println("Votre main : ");

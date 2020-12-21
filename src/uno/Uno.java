@@ -37,7 +37,7 @@ public class Uno {
         this.players = new Joueur[nbJoueur];
         this.players[0] = new JoueurHumain(this, "Humain", 0);
         for(int i = 1 ; i < nbJoueur ; ++i){
-            this.players[i] = new Bot(this,"Bot",i,1);
+            this.players[i] = new Bot(this,"Bot " + i,i,1);
         }
     }
 
@@ -57,7 +57,7 @@ public class Uno {
             int couleurRand = random.nextInt(4);
             switch (couleurRand) {
                 case 0 :
-                    this.getTalon().getSommet().setCouleur(Couleur.BLEU);
+                    this.getTalon().getSommet().setCouleur(Couleur.ROUGE);
                     break;
 
                 case 1 :
@@ -65,7 +65,7 @@ public class Uno {
                     break;
 
                 case 2 :
-                    this.getTalon().getSommet().setCouleur(Couleur.ROUGE);
+                    this.getTalon().getSommet().setCouleur(Couleur.BLEU);
                     break;
 
                 case 3 :

@@ -22,7 +22,7 @@ public class CarteJoker extends Carte{
 
     @Override
     public void appliquerEffet() {
-        //Pas fait la fonction qui permet de changer la couleur d'une carte.
+        //On peut appliquer aucun effet pour Joker
     }
 
     public boolean peutEtrePoseeSur(CarteChiffre c) {
