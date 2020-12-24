@@ -37,9 +37,9 @@ public class DialogueLigneDeCommande {
         String coup;
         joueurIncorrect = true;
         if(this.uno.isPartieFinie()){ //Si la partie est finie
-            System.out.println("Votre score est de :" + this.uno.getCurrentPlayer().getScore());
-            for(int i = 0 ; i < this.nbJoueur ; ++i){
-                System.out.println("Le score du bot n° " + i + "est : " + this.uno.getCurrentPlayer().getScore());
+            System.out.println("Votre score est de : " + this.uno.getPlayers()[0].getScore());
+            for(int i = 1 ; i < this.nbJoueur ; ++i){
+                System.out.println("Le score du bot n°" + i + " est : " + this.uno.getPlayers()[i].getScore());
             }
         }
         else{

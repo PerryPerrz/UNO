@@ -170,14 +170,17 @@ public class Uno {
     public void jeu(){ //Boucle de jeu
         DialogueLigneDeCommande dialogue = new DialogueLigneDeCommande(this) ;
         this.setDialogue(dialogue);
-        this.noJoueurPlay -= 1; //On se met au joueur qui précede le joueur actuel
+        sensHoraire = !sensHoraire; //On doit appliquer l'effet sur le joueur actuel en se plaçant à un joueur qui précede le joueur actuel. (comme ça que les effets sont construit, on applique l'effet sur le joueur qui suit)
+        changerDeJoueur(); //Par exemple, si la première carte du jeu est un plus 4, on simule le fait qu'une personne l'ai posé avant que le premier joueur commence la partie.
         this.getSommetTalon().appliquerEffet(); //On applique l'effet sur le joueur suivant
-        this.noJoueurPlay += 1; //On revient au joueur actuel
+        sensHoraire = !sensHoraire; //On remet le sens de la partie au sensHoraire initial
+        changerDeJoueur();
         dialogue.mettreAJour(); //On complète le dialogue
         while(!isPartieFinie()) {
             this.changerDeJoueur();
             dialogue.mettreAJour();
         }
+        dialogue.mettreAJour(); //On complète le dialogue
     }
 
     public Carte getSommetTalon(){
