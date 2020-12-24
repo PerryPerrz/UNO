@@ -37,15 +37,18 @@ public class DialogueLigneDeCommande {
         String coup;
         joueurIncorrect = true;
         if(this.uno.isPartieFinie()){ //Si la partie est finie
-            System.out.println("Votre score est de :" + this.uno.getPlayers()[this.uno.getNoJoueurPlay()].getScore());
+            System.out.println("Votre score est de :" + this.uno.getCurrentPlayer().getScore());
+            for(int i = 0 ; i < this.nbJoueur ; ++i){
+                System.out.println("Le score du bot n° " + i + "est : " + this.uno.getCurrentPlayer().getScore());
+            }
         }
         else{
             System.out.println("La carte au sommet du talon est : " + this.uno.getSommetTalon().toString());
-            if(this.uno.getPlayers()[this.uno.getNoJoueurPlay()].isUnBot()){ //Si c'est le tour du bot
-                System.out.println("Le " + this.uno.getPlayers()[this.uno.getNoJoueurPlay()].getNom() + " joue!");
-                System.out.println("Le bot possède : " + this.uno.getPlayers()[this.uno.getNoJoueurPlay()].getPdc().getNombreDeCartes() + " cartes!");
+            if(this.uno.getCurrentPlayer().isUnBot()){ //Si c'est le tour du bot
+                System.out.println("Le " + this.uno.getCurrentPlayer().getNom() + " joue!");
+                System.out.println("Le bot possède : " + this.uno.nbCartesJoueurPlay() + " cartes!");
                 try {
-                    this.uno.getPlayers()[this.uno.getNoJoueurPlay()].jouer("");
+                    this.uno.getCurrentPlayer().jouer("");
                     try {
                         Thread.sleep(1000); //On fait une pause après le tour du bot
                     } catch (InterruptedException e) {
@@ -57,14 +60,14 @@ public class DialogueLigneDeCommande {
             }
             else { //C'est le tour du joueur
                 System.out.println("Votre main : ");
-                for(int i = 0 ; i < this.uno.getPlayers()[this.uno.getNoJoueurPlay()].getPdc().getNombreDeCartes() ; ++i){
-                    System.out.println("Carte n° " + i + " : " + this.uno.getPlayers()[this.uno.getNoJoueurPlay()].getPdc().getCarteIndex(i).toString());
+                for(int i = 0 ; i < this.uno.nbCartesJoueurPlay() ; ++i){
+                    System.out.println("Carte n° " + i + " : " + this.uno.cardsCurrentPlayer(i));
                 }
                 System.out.println("Quel coup voulez-vous effectuer ?");
                 coup = scanner.nextLine();
                 while (joueurIncorrect){
                     try {
-                        this.uno.getPlayers()[this.uno.getNoJoueurPlay()].jouer(coup);
+                        this.uno.getCurrentPlayer().jouer(coup);
                         joueurIncorrect = false;
                     } catch (CoupIncorrect coupIncorrect) {
                         System.out.println(coupIncorrect.getMessage() + "\nVeuillez rentrer un autre coup!" );

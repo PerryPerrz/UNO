@@ -23,8 +23,8 @@ public abstract class Joueur {
     //Fonction qui retourne le score du joueur
     public int getScore(){
         int score = 0;
-        while(this.getPdc().hasNext()){
-            score += this.getPdc().next().getValeur();
+        for(int i = 0 ; i < this.getPdc().getNombreDeCartes() ; ++i){
+            score += this.getPdc().getCarteIndex(i).getValeur();
         }
         return score;
     }
@@ -47,5 +47,10 @@ public abstract class Joueur {
 
     public void setPdc(PaquetDeCartes pdc) {
         this.pdc = pdc;
+    }
+
+    //Fonction qui ajoute une carte piochée dans un paquet de carte.
+    public void addCartePiochee(){
+        this.getPdc().ajouter(this.uno.getPioche().piocher());
     }
 }

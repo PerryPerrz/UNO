@@ -39,23 +39,7 @@ public class Bot extends Joueur {
             cartePosee = true;
         }
         if(this.uno.getSommetTalon().estSansCouleur() && cartePosee){
-            nb = random.nextInt(3) + 1;
-            switch(nb){
-                case 1 :
-                    uno.getSommetTalon().setCouleur(Couleur.ROUGE);
-                    break;
-                case 2 :
-                    uno.getSommetTalon().setCouleur(Couleur.VERT);
-                    break;
-                case 3 :
-                    uno.getSommetTalon().setCouleur(Couleur.BLEU);
-                    break;
-                case 4 :
-                    uno.getSommetTalon().setCouleur(Couleur.JAUNE);
-                    break;
-                default:
-                    throw new IllegalStateException("Unexpected value: " + nb);
-            }
+           uno.getSommetTalon().setCouleur(uno.getCouleurRandom());
         }
     }
 

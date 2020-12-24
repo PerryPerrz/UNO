@@ -48,31 +48,13 @@ public class Uno {
         this.pioche.melanger();
         for(int i = 0 ; i < 7 ; ++ i){ //On donne 7 cartes par joueurs.
             for(int j = 0 ; j < this.nbJoueurs(); ++j){ //On parcours tous les joueurs.
-                this.getPlayers()[j].getPdc().ajouter(pioche.piocher());
+                this.getPlayers()[j].addCartePiochee();
             }
         }
         this.talon = FabriqueCartes.getPaquetVide(); //Au début, le talon est un paquet vide
         this.talon.ajouter(pioche.piocher()); //Une fois que tous les joueurs ont pioché, je met la première carte dans le talon
         if(this.getSommetTalon().effet() == 1 || this.getSommetTalon().effet() == 4){ //Si la première carte jouée est un joker/ un plus4, on lui donne une couleur aléatoire
-            Random random = new Random();
-            int couleurRand = random.nextInt(4);
-            switch (couleurRand) {
-                case 0 :
-                    this.getSommetTalon().setCouleur(Couleur.ROUGE);
-                    break;
-
-                case 1 :
-                    this.getSommetTalon().setCouleur(Couleur.VERT);
-                    break;
-
-                case 2 :
-                    this.getSommetTalon().setCouleur(Couleur.BLEU);
-                    break;
-
-                case 3 :
-                    this.getSommetTalon().setCouleur(Couleur.JAUNE);
-                    break;
-            }
+            this.getSommetTalon().setCouleur(this.getCouleurRandom());
         }
     }
 
@@ -117,24 +99,24 @@ public class Uno {
         if(sensHoraire){
             if(this.getNoJoueurPlay() == this.nbJoueurs() - 1){ //Je ne met pas le "if" dans la boucle for car je préfere que le programme effectue une seule fois la conditon if. (Je pense que c'est le mieux en terme d'optimisation)
                 for (int i = 0; i < nb; ++i) {
-                    this.getPlayers()[0].getPdc().ajouter(pioche.piocher());
+                    this.getPlayers()[0].addCartePiochee();
                 }
             }
             else {
                 for (int i = 0; i < nb; ++i) {
-                    this.getPlayers()[this.getNoJoueurPlay() + 1].getPdc().ajouter(pioche.piocher()); //+ 1, on ajoute les cartes au joueur suivant
+                    this.getPlayers()[this.getNoJoueurPlay() + 1].addCartePiochee(); //+ 1, on ajoute les cartes au joueur suivant
                 }
             }
         }
         else{
             if(this.getNoJoueurPlay() == 0){ //Je ne met pas le "if" dans la boucle for car je préfere que le programme effectue une seule fois la conditon if. (Je pense que c'est le mieux en terme d'optimisation)
                 for (int i = 0; i < nb; ++i) {
-                    this.getPlayers()[this.nbJoueurs() - 1].getPdc().ajouter(pioche.piocher());
+                    this.getPlayers()[this.nbJoueurs() - 1].addCartePiochee();
                 }
             }
             else {
                 for (int i = 0; i < nb; ++i) {
-                    this.getPlayers()[this.getNoJoueurPlay() - 1].getPdc().ajouter(pioche.piocher()); //- 1, on ajoute les cartes au joueur suivant
+                    this.getPlayers()[this.getNoJoueurPlay() - 1].addCartePiochee(); //- 1, on ajoute les cartes au joueur suivant
                 }
             }
         }
@@ -189,7 +171,7 @@ public class Uno {
         DialogueLigneDeCommande dialogue = new DialogueLigneDeCommande(this) ;
         this.setDialogue(dialogue);
         this.noJoueurPlay -= 1; //On se met au joueur qui précede le joueur actuel
-        this.getSommetTalon().appliquerEffet(); //On applique l'effet sur le joueur suivant.
+        this.getSommetTalon().appliquerEffet(); //On applique l'effet sur le joueur suivant
         this.noJoueurPlay += 1; //On revient au joueur actuel
         dialogue.mettreAJour(); //On complète le dialogue
         while(!isPartieFinie()) {
@@ -200,5 +182,35 @@ public class Uno {
 
     public Carte getSommetTalon(){
         return this.getTalon().getSommet();
+    }
+
+    public int nbCartesJoueurPlay(){
+        return this.getPlayers()[this.getNoJoueurPlay()].getPdc().getNombreDeCartes();
+    }
+
+    public Couleur getCouleurRandom(){
+        Random random = new Random();
+        int couleurRand = random.nextInt(3) + 1;
+        switch(couleurRand){
+            case 1 :
+                return Couleur.ROUGE;
+            case 2 :
+                return Couleur.VERT;
+            case 3 :
+                return Couleur.BLEU;
+            case 4 :
+                return Couleur.JAUNE;
+            default:
+                throw new IllegalStateException("Unexpected value: " + couleurRand);
+        }
+    }
+
+    public Joueur getCurrentPlayer(){
+        return this.getPlayers()[this.getNoJoueurPlay()];
+    }
+
+    //Fonction qui retourne une carte du joueur actuel un indice donné.
+    public String cardsCurrentPlayer(int indice){
+        return this.getCurrentPlayer().getPdc().getCarteIndex(indice).toString();
     }
 }
