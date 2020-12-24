@@ -1,5 +1,6 @@
 package uno;
 
+import uno.cartes.Carte;
 import uno.cartes.Couleur;
 import uno.cartes.FabriqueCartes;
 import uno.dialogue.DialogueLigneDeCommande;
@@ -195,5 +196,9 @@ public class Uno {
             this.changerDeJoueur();
             dialogue.mettreAJour();
         }
+    }
+
+    public Carte sommetTalon(){
+        return this.getTalon().getSommet();
     }
 }

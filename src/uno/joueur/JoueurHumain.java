@@ -21,7 +21,7 @@ public class JoueurHumain extends Joueur {
         Carte car;
 
         matcher = Pattern.compile("\\d+").matcher(coup);
-        if (coup.equals("p")) { //On vérifie que toute la chainde de caractère est égale à 'p'
+        if (coup.equals("p")) { //On vérifie que toute la chaine de de caractère est égale à 'p'
             this.getPdc().ajouter(uno.getPioche().piocher());
             if (uno.getTalon().getSommet().peutEtreRecouverte(this.pdc.getSommet())) {
                 uno.getTalon().ajouter(this.getPdc().piocher());
