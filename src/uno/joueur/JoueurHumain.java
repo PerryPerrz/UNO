@@ -94,7 +94,7 @@ public class JoueurHumain extends Joueur {
         }
         else{ //La carte existe, il faut regarder si la couleur est bonne et +4/joker
             coup = coup.replace(strNb,""); //On remplace les nombres par "" pour pouvoir récupérer la couleur, pour ce faire, on peut seulement remplacer un string par un string (avec replace) donc il faut passer par un string (strNb)
-            if(this.getPdc().getCarteIndex(indiceCarte).effet() == 1 || this.getPdc().getCarteIndex(indiceCarte).effet() == 4) { //Si c'est un joker ou un plus 4, on change la couleur de la carte.
+            if(this.effetCarteIndex(indiceCarte) == 1 || this.effetCarteIndex(indiceCarte) == 4) { //Si c'est un joker ou un plus 4, on change la couleur de la carte.
                 if(coup.equals("") || !(coup.charAt(0) == 'r') && !(coup.charAt(0) == 'v') && !(coup.charAt(0) == 'b') && !(coup.charAt(0) == 'j')){ //Il ne reste plus que les lettres qui représentent les couleurs, il suffit donc de prendre le premier char.
                     throw new CoupIncorrect("Attention, la couleur donnée n'existe pas!");
                 }

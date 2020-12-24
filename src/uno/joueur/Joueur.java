@@ -53,4 +53,9 @@ public abstract class Joueur {
     public void addCartePiochee(){
         this.getPdc().ajouter(this.uno.getPioche().piocher());
     }
+
+    //Fonction qui retourne l'effet d'une carte d'un joueur
+    public int effetCarteIndex(int indice){
+        return this.getPdc().getCarteIndex(indice).effet();
+    }
 }
