@@ -40,7 +40,7 @@ public class DialogueLigneDeCommande {
             System.out.println("Votre score est de :" + this.uno.getPlayers()[this.uno.getNoJoueurPlay()].getScore());
         }
         else{
-            System.out.println("La carte au sommet du talon est : " + this.uno.getTalon().getSommet().toString());
+            System.out.println("La carte au sommet du talon est : " + this.uno.getSommetTalon().toString());
             if(this.uno.getPlayers()[this.uno.getNoJoueurPlay()].isUnBot()){ //Si c'est le tour du bot
                 System.out.println("Le " + this.uno.getPlayers()[this.uno.getNoJoueurPlay()].getNom() + " joue!");
                 System.out.println("Le bot possède : " + this.uno.getPlayers()[this.uno.getNoJoueurPlay()].getPdc().getNombreDeCartes() + " cartes!");

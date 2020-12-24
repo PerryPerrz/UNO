@@ -23,9 +23,9 @@ public class JoueurHumain extends Joueur {
         matcher = Pattern.compile("\\d+").matcher(coup);
         if (coup.equals("p")) { //On vérifie que toute la chaine de de caractère est égale à 'p'
             this.getPdc().ajouter(uno.getPioche().piocher());
-            if (uno.getTalon().getSommet().peutEtreRecouverte(this.pdc.getSommet())) {
+            if (uno.getSommetTalon().peutEtreRecouverte(this.pdc.getSommet())) {
                 uno.getTalon().ajouter(this.getPdc().piocher());
-                this.uno.getTalon().getSommet().appliquerEffet();
+                this.uno.getSommetTalon().appliquerEffet();
             }
         }
         else{
@@ -40,7 +40,7 @@ public class JoueurHumain extends Joueur {
                 uno.changerDeJoueur();
             } else {
                 car = this.carteChoisie(coup);
-                if (uno.getTalon().getSommet().peutEtreRecouverte(car)) {
+                if (uno.getSommetTalon().peutEtreRecouverte(car)) {
                     coup = coup.replace(strNb, ""); //On garde que les couleurs
                     if (coup.length() == 0 || coup.length() == 1) { //On veut prendre que le première lettre : par exemple, si l'utilisateur écrit "violet" ça ne doit pas marcher (marche si on à que 1 chiffre ou 1 chiffre et une lettre
                         if (car.effet() == 1 || car.effet() == 4) { //On gère le cas lorsque la carte est un joker ou bien un plus 4
@@ -61,7 +61,7 @@ public class JoueurHumain extends Joueur {
                         }
                         uno.getTalon().ajouter(car); //On ajoute la carte sur le talon
                         this.pdc.removeCarteIndex(indiceCarte); //On enlève la carte de la main
-                        this.uno.getTalon().getSommet().appliquerEffet(); //On applique l'effet de la carte posée
+                        this.uno.getSommetTalon().appliquerEffet(); //On applique l'effet de la carte posée
                     }
                     else{ //Si l'utilisateur rentre une couleur invalide (plus d'un caractère)
                         this.uno.getDialogue().affichagePTT();

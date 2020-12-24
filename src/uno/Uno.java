@@ -53,24 +53,24 @@ public class Uno {
         }
         this.talon = FabriqueCartes.getPaquetVide(); //Au début, le talon est un paquet vide
         this.talon.ajouter(pioche.piocher()); //Une fois que tous les joueurs ont pioché, je met la première carte dans le talon
-        if(this.getTalon().getSommet().effet() == 1 || this.getTalon().getSommet().effet() == 4){ //Si la première carte jouée est un joker/ un plus4, on lui donne une couleur aléatoire
+        if(this.getSommetTalon().effet() == 1 || this.getSommetTalon().effet() == 4){ //Si la première carte jouée est un joker/ un plus4, on lui donne une couleur aléatoire
             Random random = new Random();
             int couleurRand = random.nextInt(4);
             switch (couleurRand) {
                 case 0 :
-                    this.getTalon().getSommet().setCouleur(Couleur.ROUGE);
+                    this.getSommetTalon().setCouleur(Couleur.ROUGE);
                     break;
 
                 case 1 :
-                    this.getTalon().getSommet().setCouleur(Couleur.VERT);
+                    this.getSommetTalon().setCouleur(Couleur.VERT);
                     break;
 
                 case 2 :
-                    this.getTalon().getSommet().setCouleur(Couleur.BLEU);
+                    this.getSommetTalon().setCouleur(Couleur.BLEU);
                     break;
 
                 case 3 :
-                    this.getTalon().getSommet().setCouleur(Couleur.JAUNE);
+                    this.getSommetTalon().setCouleur(Couleur.JAUNE);
                     break;
             }
         }
@@ -189,7 +189,7 @@ public class Uno {
         DialogueLigneDeCommande dialogue = new DialogueLigneDeCommande(this) ;
         this.setDialogue(dialogue);
         this.noJoueurPlay -= 1; //On se met au joueur qui précede le joueur actuel
-        this.getTalon().getSommet().appliquerEffet(); //On applique l'effet sur le joueur suivant.
+        this.getSommetTalon().appliquerEffet(); //On applique l'effet sur le joueur suivant.
         this.noJoueurPlay += 1; //On revient au joueur actuel
         dialogue.mettreAJour(); //On complète le dialogue
         while(!isPartieFinie()) {
@@ -198,7 +198,7 @@ public class Uno {
         }
     }
 
-    public Carte sommetTalon(){
+    public Carte getSommetTalon(){
         return this.getTalon().getSommet();
     }
 }
