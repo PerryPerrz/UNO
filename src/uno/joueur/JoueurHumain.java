@@ -18,16 +18,28 @@ public class JoueurHumain extends Joueur {
         Matcher matcher;
         String strNb;
         int indiceCarte;
-        Carte car;
+        Carte car,car2;
 
         matcher = Pattern.compile("\\d+").matcher(coup);
         if (coup.equals("p")) { //On vérifie que toute la chaine de de caractère est égale à 'p'
-            this.getPdc().ajouter(uno.getPioche().piocher());
-            if (uno.getSommetTalon().peutEtreRecouverte(this.pdc.getSommet())) {
-                uno.getTalon().ajouter(this.getPdc().piocher());
-                this.uno.getSommetTalon().appliquerEffet();
-                if(uno.getSommetTalon().effet() == 1 || uno.getSommetTalon().effet() == 4){
-                    uno.getSommetTalon().setCouleur(uno.getCouleurRandom());
+            if(uno.getPioche().estVide()){ //Si la pioche est vide
+                car2 = uno.getTalon().piocher();
+                uno.setPioche(uno.getTalon());
+                uno.getPioche().retourner();
+                //On supprime toutes les cartes de la défausse.
+                for(int i = 0 ; i  < uno.getTalon().getNombreDeCartes() ; ++i){
+                    uno.getTalon().removeCarteIndex(0); //Indice 0 car Arraylist
+                }
+                uno.getTalon().ajouter(car2);
+            }
+            else {
+                this.getPdc().ajouter(uno.getPioche().piocher());
+                if (uno.getSommetTalon().peutEtreRecouverte(this.pdc.getSommet())) {
+                    uno.getTalon().ajouter(this.getPdc().piocher());
+                    this.uno.getSommetTalon().appliquerEffet();
+                    if (uno.getSommetTalon().effet() == 1 || uno.getSommetTalon().effet() == 4) {
+                        uno.getSommetTalon().setCouleur(uno.getCouleurRandom());
+                    }
                 }
             }
         }

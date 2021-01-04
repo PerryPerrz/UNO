@@ -142,6 +142,10 @@ public class Uno {
         return pioche;
     }
 
+    public void setPioche(PaquetDeCartes pioche) {
+        this.pioche = pioche;
+    }
+
     public PaquetDeCartes getTalon() {
         return talon;
     }
