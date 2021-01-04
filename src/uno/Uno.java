@@ -96,6 +96,17 @@ public class Uno {
     }
 
     public void distribuerCarteSuivant(int nb){ //On distribue le nombre de cartes aux joueurs suivants
+        Carte car2;
+        if(this.getPioche().estVide()){ //Si la pioche est vide
+            car2 = this.getTalon().piocher();
+            this.setPioche(this.getTalon());
+            this.getPioche().retourner();
+            //On supprime toutes les cartes de la défausse.
+            for(int i = 0 ; i  < this.getTalon().getNombreDeCartes() ; ++i){
+                this.getTalon().removeCarteIndex(0); //Indice 0 car Arraylist
+            }
+            this.getTalon().ajouter(car2);
+        }
         if(sensHoraire){
             if(this.getNoJoueurPlay() == this.nbJoueurs() - 1){ //Je ne met pas le "if" dans la boucle for car je préfere que le programme effectue une seule fois la conditon if. (Je pense que c'est le mieux en terme d'optimisation)
                 for (int i = 0; i < nb; ++i) {

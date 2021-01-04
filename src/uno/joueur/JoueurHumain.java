@@ -32,14 +32,12 @@ public class JoueurHumain extends Joueur {
                 }
                 uno.getTalon().ajouter(car2);
             }
-            else {
-                this.getPdc().ajouter(uno.getPioche().piocher());
-                if (uno.getSommetTalon().peutEtreRecouverte(this.pdc.getSommet())) {
-                    uno.getTalon().ajouter(this.getPdc().piocher());
-                    this.uno.getSommetTalon().appliquerEffet();
-                    if (uno.getSommetTalon().effet() == 1 || uno.getSommetTalon().effet() == 4) {
-                        uno.getSommetTalon().setCouleur(uno.getCouleurRandom());
-                    }
+            this.getPdc().ajouter(uno.getPioche().piocher());
+            if (uno.getSommetTalon().peutEtreRecouverte(this.pdc.getSommet())) {
+                uno.getTalon().ajouter(this.getPdc().piocher());
+                this.uno.getSommetTalon().appliquerEffet();
+                if (uno.getSommetTalon().effet() == 1 || uno.getSommetTalon().effet() == 4) {
+                    uno.getSommetTalon().setCouleur(uno.getCouleurRandom());
                 }
             }
         }
