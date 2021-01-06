@@ -9,7 +9,7 @@ import java.util.Iterator;
 import java.util.Scanner;
 
 /**
- * Une class PaquetDeCartes
+ * Une classe PaquetDeCartes
  * 
  * @author Hugo Iopeti
  */

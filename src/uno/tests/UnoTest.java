@@ -19,7 +19,7 @@ class UnoTest {
         assertEquals(uno.nbJoueurs(),6);
         assertEquals(uno.getPlayers()[0].getNom(), "Humain");
         for(int i = 1 ; i < uno.nbJoueurs() ; ++i) {
-            assertEquals(uno.getPlayers()[i].getNom(), "Bot");
+            assertEquals(uno.getPlayers()[i].getNom(), "Bot n° " + i);
         }
         assertEquals(uno.getPioche().getNombreDeCartes(),108 - 6*7 - 1); //Paquet de Uno - les paquets de chaque joueurs - le talon
         for(int i = 0 ; i < uno.nbJoueurs() ; ++i){

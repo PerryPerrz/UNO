@@ -1,7 +1,7 @@
 package uno.cartes;
 
 /**
- * La class Couleur
+ * La classe Couleur
  * 
  * @author Hugo Iopeti
  */
